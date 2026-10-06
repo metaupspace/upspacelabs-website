@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_contact_info_items",
+  "info": {
+    "displayName": "Info Item",
+    "icon": "phone",
+    "description": "A contact detail beside the form (phone, email, hours\u2026)"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "enumeration",
+      "enum": ["phone", "mail", "location", "clock", "chat"],
+      "default": "phone"
+    },
+    "tone": {
+      "type": "enumeration",
+      "enum": ["green", "blue", "violet", "amber"],
+      "default": "blue"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string",
+      "description": "Optional link, e.g. tel:+91\u2026, mailto:\u2026, or a map URL"
+    }
+  }
+}

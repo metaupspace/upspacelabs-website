@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_career_videos",
+  "info": {
+    "displayName": "Career Video",
+    "icon": "play",
+    "description": "A tile of the career video gallery: poster plus an uploaded video or a link"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["videos"]
+    },
+    "videoUrl": {
+      "type": "string",
+      "description": "Used when no video is uploaded: an mp4 / webm URL, or a YouTube / Vimeo link"
+    },
+    "playButton": {
+      "type": "enumeration",
+      "enum": ["primary", "light"],
+      "default": "primary"
+    }
+  }
+}

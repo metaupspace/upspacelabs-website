@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Contact Page",
+    "description": "Heading, contact details and form copy for /contact-us"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "infoItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.info-item"
+    },
+    "form": {
+      "type": "component",
+      "repeatable": false,
+      "component": "contact.form"
+    }
+  }
+}

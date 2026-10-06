@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": "An open role, listed on /career"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "team": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "description": "Position in the list (lowest first); empty sorts last"
+    }
+  }
+}

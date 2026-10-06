@@ -607,7 +607,7 @@ packages:
       react: '>=18'
 
   '@metaupspace/ui@file:vendor/metaupspace/metaupspace-ui.tgz':
-    resolution: {integrity: sha512-qLvZQ/Y3hvd1d8g0zu7r5/fIfk7PM0C+25RagFK5rrsqR15tNhXQX0MnPKDcQ2eLCvldSNVxwEEzwOYVhQ9U5w==, tarball: file:vendor/metaupspace/metaupspace-ui.tgz}
+    resolution: {integrity: sha512-XeDJl3QhiEGE2pSs84V7f9t52n1av9nxP0mKO1/7VHoSsBppegqgSzCsYhTliBs9zShNwnvAhzgwVnf9vsCxhw==, tarball: file:vendor/metaupspace/metaupspace-ui.tgz}
     version: 0.2.0
     engines: {node: '>=22'}
     peerDependencies:

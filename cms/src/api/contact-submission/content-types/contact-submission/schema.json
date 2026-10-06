@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_submissions",
+  "info": {
+    "singularName": "contact-submission",
+    "pluralName": "contact-submissions",
+    "displayName": "Contact Submission",
+    "description": "Messages sent from the website contact form"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "maxLength": 254
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "topic": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "message": {
+      "type": "text",
+      "required": true,
+      "maxLength": 2000
+    },
+    "handling": {
+      "type": "enumeration",
+      "enum": ["new", "in-progress", "resolved"],
+      "default": "new"
+    }
+  }
+}

@@ -1,6 +1,16 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   textToGroups,
+  mapAboutPageContent,
+  mapCareerPageContent,
+  mapCareerGallery,
+  mapWhyJoin,
+  mapOpenRoles,
+  mapHowWeWork,
+  mapFounded,
+  mapTeam,
+  mapOffices,
+  mapProgress,
   mapBlogCard,
   mapBlogPage,
   mapBlogPost,
@@ -20,6 +30,8 @@ import {
   navContentFallback,
 } from '@/lib/content/navigation';
 import { landingPageFallback } from '@/lib/content/landing';
+import { aboutPageFallback } from '@/lib/content/about';
+import { careerPageFallback } from '@/lib/content/career';
 import { blogPageFallback, blogPostFallbacks } from '@/lib/content/blog';
 
 const heroFallback = landingPageFallback.hero;
@@ -555,6 +567,339 @@ describe('blog listing', () => {
     expect(
       mapBlogPage({ title: 'Stories', description: '' }, blogPageFallback)
     ).toEqual({ ...blogPageFallback, title: 'Stories' });
+  });
+});
+
+describe('mapAboutPageContent', () => {
+  it('uses the whole fallback without an entry, and falls back per field', () => {
+    expect(mapAboutPageContent(null, aboutPageFallback)).toEqual(
+      aboutPageFallback
+    );
+    const { hero } = mapAboutPageContent(
+      { hero: { headline: 'Hello', subtitle: '', primaryCta: null } },
+      aboutPageFallback
+    );
+    expect(hero).toEqual({
+      ...aboutPageFallback.hero,
+      headline: 'Hello',
+      secondaryCta: null,
+    });
+  });
+});
+
+describe('mapFounded', () => {
+  const fallback = aboutPageFallback.founded;
+
+  it('splits paragraphs on blank lines and parses decimal strings', () => {
+    expect(
+      mapFounded(
+        {
+          title: 'Founded',
+          description: 'One.\n\n  Two.  ',
+          officeLat: '19.07',
+          officeLng: '72.88',
+          connections: [
+            { label: 'Paris', lat: '48.85', lng: '2.35', altitude: null },
+            { label: 'Broken', lat: 'x', lng: '1' },
+          ],
+        },
+        fallback
+      )
+    ).toEqual({
+      title: 'Founded',
+      paragraphs: ['One.', 'Two.'],
+      office: { lat: 19.07, lng: 72.88 },
+      connections: [{ label: 'Paris', lat: 48.85, lng: 2.35, altitude: null }],
+    });
+  });
+
+  it('falls back per field', () => {
+    expect(mapFounded(null, fallback)).toEqual(fallback);
+    expect(
+      mapFounded({ title: '', description: ' ', connections: [] }, fallback)
+    ).toEqual(fallback);
+  });
+});
+
+describe('mapTeam', () => {
+  const fallback = aboutPageFallback.team;
+
+  it('skips unnamed members and uses the placeholder without a photo', () => {
+    const team = mapTeam(
+      {
+        title: 'Our team',
+        description: '',
+        members: [
+          { name: 'Asha', role: 'Designer', photo: null },
+          { name: ' ', role: 'Ghost' },
+          {
+            name: 'Ravi',
+            role: '',
+            photo: {
+              url: 'https://cdn.test/ravi.jpg',
+              width: 600,
+              height: 600,
+            },
+          },
+        ],
+      },
+      fallback
+    );
+    expect(team.title).toBe('Our team');
+    expect(team.description).toBe(fallback.description);
+    expect(team.members).toHaveLength(2);
+    expect(team.members[0]).toMatchObject({
+      name: 'Asha',
+      role: 'Designer',
+      photo: { src: '/About/team/img.jpg', alt: 'Asha' },
+    });
+    expect(team.members[1].role).toBeNull();
+    expect(team.members[1].photo).toMatchObject({
+      src: 'https://cdn.test/ravi.jpg',
+    });
+  });
+
+  it('falls back to the built-in team', () => {
+    expect(mapTeam(null, fallback)).toEqual(fallback);
+    expect(mapTeam({ title: 'T', members: [] }, fallback).members).toEqual(
+      fallback.members
+    );
+  });
+});
+
+describe('mapOffices', () => {
+  const fallback = aboutPageFallback.offices;
+
+  it('maps offices, defaulting the map to the city and the background to bg.png', () => {
+    const { offices } = mapOffices(
+      {
+        title: 'Offices',
+        offices: [
+          { city: 'Pune', mapQuery: '', mapZoom: 99, background: null },
+          { city: '', mapQuery: 'Nowhere' },
+          {
+            city: 'Delhi',
+            mapQuery: '28.61,77.21',
+            mapZoom: 12,
+            background: {
+              url: 'https://cdn.test/delhi.png',
+              width: 800,
+              height: 400,
+            },
+          },
+        ],
+      },
+      fallback
+    );
+    expect(offices).toEqual([
+      {
+        city: 'Pune',
+        mapQuery: 'Pune',
+        mapZoom: 15,
+        background: { src: '/About/bg.png', alt: '', width: 1717, height: 916 },
+      },
+      {
+        city: 'Delhi',
+        mapQuery: '28.61,77.21',
+        mapZoom: 12,
+        background: expect.objectContaining({
+          src: 'https://cdn.test/delhi.png',
+          alt: '',
+        }),
+      },
+    ]);
+  });
+
+  it('falls back to the built-in offices', () => {
+    expect(mapOffices(null, fallback)).toEqual(fallback);
+    expect(mapOffices({ title: '', offices: [] }, fallback)).toEqual(fallback);
+  });
+});
+
+describe('mapProgress', () => {
+  const fallback = aboutPageFallback.progress;
+
+  it('skips untitled milestones, nulls empty fields and hides an emptied hint', () => {
+    expect(
+      mapProgress(
+        {
+          title: 'Path',
+          description: ' ',
+          hint: '',
+          milestones: [
+            {
+              date: '2027',
+              title: 'Launch',
+              status: 'Planned',
+              description: '',
+            },
+            { date: '2028', title: ' ' },
+          ],
+        },
+        fallback
+      )
+    ).toEqual({
+      title: 'Path',
+      description: fallback.description,
+      hint: null,
+      milestones: [
+        { date: '2027', title: 'Launch', status: 'Planned', description: null },
+      ],
+    });
+  });
+
+  it('falls back to the built-in milestones', () => {
+    expect(mapProgress(null, fallback)).toEqual(fallback);
+    expect(
+      mapProgress({ title: 'T', hint: 'Scroll', milestones: [] }, fallback)
+        .milestones
+    ).toEqual(fallback.milestones);
+  });
+});
+
+describe('mapCareerPageContent', () => {
+  it('uses the whole fallback without a hero entry', () => {
+    expect(mapCareerPageContent(null, careerPageFallback)).toEqual(
+      careerPageFallback
+    );
+    expect(mapCareerPageContent({ hero: null }, careerPageFallback)).toEqual(
+      careerPageFallback
+    );
+  });
+
+  it('maps gallery videos: upload wins over a link, untitled tiles are skipped', () => {
+    const fallback = careerPageFallback.gallery;
+    const gallery = mapCareerGallery(
+      [
+        {
+          title: 'Team day',
+          poster: { url: 'https://cdn.test/p.jpg', width: 600, height: 400 },
+          video: { url: 'https://cdn.test/v.mp4' },
+          videoUrl: 'https://youtu.be/x',
+          playButton: 'light',
+        },
+        { title: 'Link only', videoUrl: 'https://youtu.be/y' },
+        { title: '', videoUrl: 'https://youtu.be/z' },
+        { title: 'Poster only' },
+      ],
+      fallback
+    );
+    expect(gallery.map(v => [v.title, v.src, v.playButton])).toEqual([
+      ['Team day', 'https://cdn.test/v.mp4', 'light'],
+      ['Link only', 'https://youtu.be/y', 'primary'],
+      ['Poster only', null, 'primary'],
+    ]);
+    expect(gallery[0].poster).toMatchObject({
+      src: 'https://cdn.test/p.jpg',
+      alt: 'Team day',
+    });
+    expect(gallery[1].poster.src).toBe(fallback[1].poster.src);
+    expect(mapCareerGallery([], fallback)).toEqual(fallback);
+  });
+
+  it('maps the "Why join us" perks and hides an emptied eyebrow', () => {
+    const fallback = careerPageFallback.whyJoin;
+    expect(mapWhyJoin(null, fallback)).toEqual(fallback);
+    expect(
+      mapWhyJoin(
+        {
+          eyebrow: '',
+          title: 'Why us',
+          perks: [
+            { title: 'Remote Fridays', description: '' },
+            { title: ' ', description: 'Skipped' },
+          ],
+        },
+        fallback
+      )
+    ).toEqual({
+      eyebrow: null,
+      title: 'Why us',
+      description: fallback.description,
+      perks: [{ title: 'Remote Fridays', description: null }],
+    });
+    expect(mapWhyJoin({ title: 'T', perks: [] }, fallback).perks).toEqual(
+      fallback.perks
+    );
+  });
+
+  it('lists Strapi jobs (title and slug required) under the heading', () => {
+    const fallback = careerPageFallback.openRoles;
+    const roles = mapOpenRoles(
+      { title: 'We are hiring', description: '' },
+      [
+        {
+          title: 'Data Engineer',
+          slug: 'data-engineer',
+          team: 'Engineering',
+          location: '',
+        },
+        { title: 'No slug', slug: '' },
+      ],
+      fallback
+    );
+    expect(roles).toEqual({
+      title: 'We are hiring',
+      description: fallback.description,
+      jobs: [
+        {
+          title: 'Data Engineer',
+          slug: 'data-engineer',
+          team: 'Engineering',
+          location: null,
+        },
+      ],
+    });
+    expect(mapOpenRoles(null, null, fallback)).toEqual(fallback);
+    expect(mapOpenRoles(null, [], fallback).jobs).toEqual(fallback.jobs);
+  });
+
+  it('splits "How we work" paragraphs and keeps the bundled image without an upload', () => {
+    const fallback = careerPageFallback.howWeWork;
+    expect(mapHowWeWork(null, fallback)).toEqual(fallback);
+    expect(
+      mapHowWeWork(
+        {
+          eyebrow: ' ',
+          title: 'Our way',
+          description: 'One.\n\nTwo.',
+          image: null,
+        },
+        fallback
+      )
+    ).toEqual({
+      eyebrow: null,
+      title: 'Our way',
+      paragraphs: ['One.', 'Two.'],
+      image: fallback.image,
+    });
+  });
+
+  it('maps the heading over the office cards', () => {
+    const fallback = careerPageFallback;
+    expect(
+      mapCareerPageContent(
+        { officesHeading: { title: 'Visit us', description: '' } },
+        fallback
+      ).officesHeading
+    ).toEqual({
+      title: 'Visit us',
+      description: fallback.officesHeading.description,
+    });
+  });
+
+  it('falls back per field and hides an emptied badge or button', () => {
+    expect(
+      mapCareerPageContent(
+        { hero: { badge: ' ', headline: 'Join us', subtitle: '', cta: null } },
+        careerPageFallback
+      ).hero
+    ).toEqual({
+      badge: null,
+      headline: 'Join us',
+      subtitle: careerPageFallback.hero.subtitle,
+      cta: null,
+    });
   });
 });
 

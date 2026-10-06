@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_about_offices",
+  "info": {
+    "displayName": "Office",
+    "icon": "pinMap",
+    "description": "An office card: a Google map over an illustration of the city"
+  },
+  "options": {},
+  "attributes": {
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "mapQuery": {
+      "type": "string",
+      "required": true,
+      "description": "What the map shows — an address, a place name or \"lat,lng\""
+    },
+    "mapZoom": {
+      "type": "integer",
+      "min": 3,
+      "max": 20
+    },
+    "background": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

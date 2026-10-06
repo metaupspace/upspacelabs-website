@@ -1,5 +1,21 @@
 import { strapiMediaUrl, type StrapiMedia } from '@/lib/strapi/client';
 import type {
+  AboutPageContent,
+  CareerPageContent,
+  CareerPerk,
+  CareerVideo,
+  HowWeWorkContent,
+  JobListing,
+  OpenRolesContent,
+  WhyJoinContent,
+  FoundedContent,
+  GlobeConnection,
+  Milestone,
+  Office,
+  OfficesContent,
+  ProgressContent,
+  TeamContent,
+  TeamMember,
   BlogBlock,
   BlogCard,
   BlogPageContent,
@@ -503,7 +519,7 @@ export function mapBlogPage(
 
 // ─── Landing Page ──────────────────────────────────────────────────────────
 
-interface RawHero {
+export interface RawHero {
   headline?: string | null;
   subtitle?: string | null;
   primaryCta?: RawCta | null;
@@ -814,6 +830,390 @@ export function mapLandingPageContent(
     customerStories: mapCustomerStories(
       raw?.customerStories,
       fallback.customerStories
+    ),
+  };
+}
+
+// ─── About Page ────────────────────────────────────────────────────────────
+
+interface RawFounded {
+  title?: string | null;
+  description?: string | null;
+  officeLat?: number | string | null;
+  officeLng?: number | string | null;
+  connections?:
+    | {
+        label?: string | null;
+        lat?: number | string | null;
+        lng?: number | string | null;
+        altitude?: number | string | null;
+      }[]
+    | null;
+}
+
+interface RawTeam {
+  title?: string | null;
+  description?: string | null;
+  members?:
+    | {
+        name?: string | null;
+        role?: string | null;
+        photo?: StrapiMedia | null;
+      }[]
+    | null;
+}
+
+interface RawOffices {
+  title?: string | null;
+  description?: string | null;
+  offices?:
+    | {
+        city?: string | null;
+        mapQuery?: string | null;
+        mapZoom?: number | null;
+        background?: StrapiMedia | null;
+      }[]
+    | null;
+}
+
+interface RawProgress {
+  title?: string | null;
+  description?: string | null;
+  hint?: string | null;
+  milestones?:
+    | {
+        date?: string | null;
+        title?: string | null;
+        status?: string | null;
+        description?: string | null;
+      }[]
+    | null;
+}
+
+export interface RawAboutPage {
+  hero?: RawHero | null;
+  founded?: RawFounded | null;
+  team?: RawTeam | null;
+  offices?: RawOffices | null;
+  progress?: RawProgress | null;
+  stories?: RawCardCarousel | null;
+}
+
+/** Milestones without a title are skipped (none left → the fallback ones); an emptied hint is hidden. */
+export function mapProgress(
+  raw: RawProgress | null | undefined,
+  fallback: ProgressContent
+): ProgressContent {
+  if (!raw) return fallback;
+  const milestones = (raw.milestones ?? []).flatMap((m): Milestone[] => {
+    const title = text(m?.title, '');
+    if (!title) return [];
+    return [
+      {
+        date: optionalText(m.date),
+        title,
+        status: optionalText(m.status),
+        description: optionalText(m.description),
+      },
+    ];
+  });
+  return {
+    title: text(raw.title, fallback.title),
+    description: text(raw.description, fallback.description),
+    hint: optionalText(raw.hint),
+    milestones: milestones.length ? milestones : fallback.milestones,
+  };
+}
+
+/** Illustration behind an office's map when none is uploaded. */
+export const DEFAULT_OFFICE_BACKGROUND: ImageAsset = {
+  src: '/About/bg.png',
+  alt: '',
+  width: 1717,
+  height: 916,
+};
+
+/** Offices without a city are skipped (none left → the fallback offices); the map defaults to the city. */
+export function mapOffices(
+  raw: RawOffices | null | undefined,
+  fallback: OfficesContent
+): OfficesContent {
+  if (!raw) return fallback;
+  const offices = (raw.offices ?? []).flatMap((office): Office[] => {
+    const city = text(office?.city, '');
+    if (!city) return [];
+    const zoom = toNumber(office.mapZoom);
+    return [
+      {
+        city,
+        mapQuery: text(office.mapQuery, city),
+        mapZoom: zoom !== null && zoom >= 3 && zoom <= 20 ? zoom : 15,
+        // Decorative: the map's title names the city.
+        background: {
+          ...mapImage(office.background, DEFAULT_OFFICE_BACKGROUND),
+          alt: '',
+        },
+      },
+    ];
+  });
+  return {
+    title: text(raw.title, fallback.title),
+    description: text(raw.description, fallback.description),
+    offices: offices.length ? offices : fallback.offices,
+  };
+}
+
+/** Shown for a team member without a photo. */
+export const DEFAULT_TEAM_PHOTO: ImageAsset = {
+  src: '/About/team/img.jpg',
+  alt: '',
+  width: 640,
+  height: 640,
+};
+
+/** Members without a name are skipped (none left → the fallback team). */
+export function mapTeam(
+  raw: RawTeam | null | undefined,
+  fallback: TeamContent
+): TeamContent {
+  if (!raw) return fallback;
+  const members = (raw.members ?? []).flatMap((member): TeamMember[] => {
+    const name = text(member?.name, '');
+    if (!name) return [];
+    return [
+      {
+        name,
+        role: optionalText(member.role),
+        photo: mapImage(member.photo, { ...DEFAULT_TEAM_PHOTO, alt: name }),
+      },
+    ];
+  });
+  return {
+    title: text(raw.title, fallback.title),
+    description: text(raw.description, fallback.description),
+    members: members.length ? members : fallback.members,
+  };
+}
+
+/** Strapi decimals can arrive as strings; anything unparseable is `null`. */
+const toNumber = (value: unknown): number | null => {
+  if (value === null || value === undefined || value === '') return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+};
+
+export function mapFounded(
+  raw: RawFounded | null | undefined,
+  fallback: FoundedContent
+): FoundedContent {
+  if (!raw) return fallback;
+  const paragraphs = text(raw.description, '')
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean);
+  const officeLat = toNumber(raw.officeLat);
+  const officeLng = toNumber(raw.officeLng);
+  const connections = (raw.connections ?? []).flatMap(
+    (c): GlobeConnection[] => {
+      const lat = toNumber(c?.lat);
+      const lng = toNumber(c?.lng);
+      if (lat === null || lng === null) return [];
+      return [
+        {
+          label: optionalText(c.label),
+          lat,
+          lng,
+          altitude: toNumber(c.altitude),
+        },
+      ];
+    }
+  );
+  return {
+    title: text(raw.title, fallback.title),
+    paragraphs: paragraphs.length ? paragraphs : fallback.paragraphs,
+    office:
+      officeLat !== null && officeLng !== null
+        ? { lat: officeLat, lng: officeLng }
+        : fallback.office,
+    connections: connections.length ? connections : fallback.connections,
+  };
+}
+
+export function mapAboutPageContent(
+  raw: RawAboutPage | null | undefined,
+  fallback: AboutPageContent
+): AboutPageContent {
+  return {
+    hero: mapHeroContent(raw?.hero, fallback.hero),
+    founded: mapFounded(raw?.founded, fallback.founded),
+    team: mapTeam(raw?.team, fallback.team),
+    offices: mapOffices(raw?.offices, fallback.offices),
+    progress: mapProgress(raw?.progress, fallback.progress),
+    stories: mapCardCarousel(raw?.stories, fallback.stories),
+  };
+}
+
+// ─── Career Page ───────────────────────────────────────────────────────────
+
+export interface RawCareerPage {
+  hero?: {
+    badge?: string | null;
+    headline?: string | null;
+    subtitle?: string | null;
+    cta?: RawCta | null;
+  } | null;
+  gallery?:
+    | {
+        title?: string | null;
+        poster?: StrapiMedia | null;
+        video?: StrapiMedia | null;
+        videoUrl?: string | null;
+        playButton?: string | null;
+      }[]
+    | null;
+  whyJoin?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    description?: string | null;
+    perks?: { title?: string | null; description?: string | null }[] | null;
+  } | null;
+  openRoles?: { title?: string | null; description?: string | null } | null;
+  howWeWork?: {
+    eyebrow?: string | null;
+    title?: string | null;
+    description?: string | null;
+    image?: StrapiMedia | null;
+  } | null;
+  officesHeading?: RawSectionHeading | null;
+}
+
+/**
+ * Videos without a title are skipped (none left → the fallback gallery); a
+ * missing poster uses the fallback tile's at the same position. An uploaded
+ * video wins over `videoUrl`; with neither the tile shows only its poster.
+ */
+export function mapCareerGallery(
+  raw: RawCareerPage['gallery'],
+  fallback: CareerVideo[]
+): CareerVideo[] {
+  const videos = (raw ?? []).flatMap((item, index): CareerVideo[] => {
+    const title = text(item?.title, '');
+    if (!title) return [];
+    const base = fallback[index % fallback.length];
+    const upload = item.video?.url ? strapiMediaUrl(item.video) : '';
+    return [
+      {
+        title,
+        poster: {
+          ...mapImage(item.poster, base.poster),
+          alt: text(item.poster?.alternativeText, title),
+        },
+        src: upload || optionalText(item.videoUrl),
+        playButton: item.playButton === 'light' ? 'light' : 'primary',
+      },
+    ];
+  });
+  return videos.length ? videos : fallback;
+}
+
+/** Perks without a title are skipped (none left → the fallback perks); an emptied eyebrow is hidden. */
+export function mapWhyJoin(
+  raw: RawCareerPage['whyJoin'],
+  fallback: WhyJoinContent
+): WhyJoinContent {
+  if (!raw) return fallback;
+  const perks = (raw.perks ?? []).flatMap((perk): CareerPerk[] => {
+    const title = text(perk?.title, '');
+    return title
+      ? [{ title, description: optionalText(perk.description) }]
+      : [];
+  });
+  return {
+    eyebrow: optionalText(raw.eyebrow),
+    title: text(raw.title, fallback.title),
+    description: text(raw.description, fallback.description),
+    perks: perks.length ? perks : fallback.perks,
+  };
+}
+
+/** Paragraphs split on blank lines; an emptied eyebrow is hidden. */
+export function mapHowWeWork(
+  raw: RawCareerPage['howWeWork'],
+  fallback: HowWeWorkContent
+): HowWeWorkContent {
+  if (!raw) return fallback;
+  const paragraphs = text(raw.description, '')
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean);
+  return {
+    eyebrow: optionalText(raw.eyebrow),
+    title: text(raw.title, fallback.title),
+    paragraphs: paragraphs.length ? paragraphs : fallback.paragraphs,
+    image: mapImage(raw.image, fallback.image),
+  };
+}
+
+export interface RawJob {
+  title?: string | null;
+  slug?: string | null;
+  team?: string | null;
+  location?: string | null;
+}
+
+/** Jobs need a title and slug; with none left (or no Strapi list) the fallback jobs show. */
+export function mapOpenRoles(
+  raw: RawCareerPage['openRoles'],
+  rawJobs: RawJob[] | null | undefined,
+  fallback: OpenRolesContent
+): OpenRolesContent {
+  const jobs = (rawJobs ?? []).flatMap((job): JobListing[] => {
+    const title = text(job?.title, '');
+    const slug = text(job?.slug, '');
+    return title && slug
+      ? [
+          {
+            title,
+            slug,
+            team: optionalText(job.team),
+            location: optionalText(job.location),
+          },
+        ]
+      : [];
+  });
+  return {
+    title: text(raw?.title, fallback.title),
+    description: text(raw?.description, fallback.description),
+    jobs: jobs.length ? jobs : fallback.jobs,
+  };
+}
+
+/**
+ * Without a hero entry the whole fallback hero is used; once there is one,
+ * an emptied badge or button means the editor removed it, so it stays hidden.
+ */
+export function mapCareerPageContent(
+  raw: RawCareerPage | null | undefined,
+  fallback: CareerPageContent,
+  rawJobs?: RawJob[] | null
+): CareerPageContent {
+  const hero = raw?.hero;
+  return {
+    hero: hero
+      ? {
+          badge: optionalText(hero.badge),
+          headline: text(hero.headline, fallback.hero.headline),
+          subtitle: text(hero.subtitle, fallback.hero.subtitle),
+          cta: mapOptionalCta(hero.cta, fallback.hero.cta),
+        }
+      : fallback.hero,
+    gallery: mapCareerGallery(raw?.gallery, fallback.gallery),
+    whyJoin: mapWhyJoin(raw?.whyJoin, fallback.whyJoin),
+    openRoles: mapOpenRoles(raw?.openRoles, rawJobs, fallback.openRoles),
+    howWeWork: mapHowWeWork(raw?.howWeWork, fallback.howWeWork),
+    officesHeading: mapSectionHeading(
+      raw?.officesHeading,
+      fallback.officesHeading
     ),
   };
 }

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_legal_sections",
+  "info": {
+    "displayName": "Legal Section",
+    "icon": "file",
+    "description": "A headed section of a legal page"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text",
+      "required": true,
+      "description": "Blank line = new paragraph. Lines starting with \"- \" are bullets. \"### Title\" is a sub-heading."
+    }
+  }
+}

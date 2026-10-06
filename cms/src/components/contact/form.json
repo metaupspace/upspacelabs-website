@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_contact_forms",
+  "info": {
+    "displayName": "Contact Form",
+    "icon": "envelope",
+    "description": "Labels, placeholders and messages of the contact form"
+  },
+  "options": {},
+  "attributes": {
+    "nameLabel": {
+      "type": "string"
+    },
+    "namePlaceholder": {
+      "type": "string"
+    },
+    "emailLabel": {
+      "type": "string"
+    },
+    "emailPlaceholder": {
+      "type": "string"
+    },
+    "phoneLabel": {
+      "type": "string"
+    },
+    "phonePlaceholder": {
+      "type": "string"
+    },
+    "topicLabel": {
+      "type": "string"
+    },
+    "topicPlaceholder": {
+      "type": "string"
+    },
+    "messageLabel": {
+      "type": "string"
+    },
+    "messagePlaceholder": {
+      "type": "string"
+    },
+    "submitLabel": {
+      "type": "string"
+    },
+    "successTitle": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "successMessage": {
+      "type": "text"
+    },
+    "topics": {
+      "type": "json"
+    }
+  }
+}

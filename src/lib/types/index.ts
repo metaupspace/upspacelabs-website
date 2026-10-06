@@ -2,3 +2,7 @@ export * from './shared';
 export * from './layout';
 export * from './landing';
 export * from './blog';
+export * from './about';
+export * from './contact';
+export * from './legal';
+export * from './career';

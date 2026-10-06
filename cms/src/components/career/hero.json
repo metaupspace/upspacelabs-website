@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_career_heroes",
+  "info": {
+    "displayName": "Career Hero",
+    "icon": "briefcase",
+    "description": "Top of /career — a \"Now Hiring\" badge, headline, subtitle and a button"
+  },
+  "options": {},
+  "attributes": {
+    "badge": {
+      "type": "string",
+      "description": "Small pill above the headline; empty hides it"
+    },
+    "headline": {
+      "type": "text",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta"
+    }
+  }
+}

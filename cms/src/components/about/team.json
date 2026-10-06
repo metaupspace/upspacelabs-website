@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_about_teams",
+  "info": {
+    "displayName": "Team",
+    "icon": "user",
+    "description": "\"Meet the team\" — heading, description and a carousel of people"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "members": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.team-member"
+    }
+  }
+}

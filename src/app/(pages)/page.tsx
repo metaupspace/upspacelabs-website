@@ -3,7 +3,7 @@ import { getLandingPageContent } from '@/lib/content/landing';
 import { CardCarouselSection } from '@/components/sections/CardCarouselSection';
 import { CustomerStories } from './fragments/CustomerStories';
 import { FeaturedApps } from './fragments/FeaturedApps';
-import { HeroSection } from './fragments/HeroSection';
+import { HeroSection } from '@/components/sections/HeroSection';
 import { PlatformSection } from './fragments/PlatformSection';
 import { ProductShowcaseSection } from './fragments/ProductShowcaseSection';
 import { ProductsHeading } from './fragments/ProductsHeading';

@@ -15,14 +15,21 @@ import type { CardCarouselContent } from '@/lib/types';
  */
 export function CardCarouselSection({
   content,
+  headlineMaxWidth,
+  headingClassName = 'pt-20 pb-10 md:pt-24 md:pb-12',
 }: {
   content: CardCarouselContent;
+  /** Max width of the title, any CSS length — to choose where it wraps. */
+  headlineMaxWidth?: string;
+  /** Spacing around the heading. Default "pt-20 pb-10 md:pt-24 md:pb-12". */
+  headingClassName?: string;
 }) {
   return (
     <>
       <SectionHeading
         content={content}
-        className="pt-20 pb-10 md:pt-24 md:pb-12"
+        className={headingClassName}
+        headlineMaxWidth={headlineMaxWidth}
         subtitleMaxWidth="37.5rem"
         classNames={{
           content: 'px-5 md:px-6',

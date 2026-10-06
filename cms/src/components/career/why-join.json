@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_career_why_joins",
+  "info": {
+    "displayName": "Why Join Us",
+    "icon": "star",
+    "description": "Eyebrow, title and description beside a grid of perks"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "perks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "career.perk"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_about_offices_sections",
+  "info": {
+    "displayName": "Offices",
+    "icon": "pinMap",
+    "description": "\"Working in office across two incredible cities\" — heading and office map cards"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "offices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.office"
+    }
+  }
+}

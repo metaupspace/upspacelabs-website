@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_about_progresses",
+  "info": {
+    "displayName": "Progress",
+    "icon": "calendar",
+    "description": "\"Our path of progress\" — heading over a timeline that pans sideways as you scroll"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "hint": {
+      "type": "string",
+      "description": "Corner hint, e.g. \"[Scroll to Explore]\""
+    },
+    "milestones": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.milestone"
+    }
+  }
+}

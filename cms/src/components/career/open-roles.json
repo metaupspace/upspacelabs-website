@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_career_open_roles",
+  "info": {
+    "displayName": "Open Roles",
+    "icon": "briefcase",
+    "description": "Heading over the list of open roles (the roles themselves are Job entries)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
