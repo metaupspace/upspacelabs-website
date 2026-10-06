@@ -55,7 +55,16 @@ Uploads go to Cloudflare R2 when all `CF_R2_*` variables hold real values. Other
 
 ## Content types
 
-| Strapi entry             | Website                                     |
-| ------------------------ | ------------------------------------------- |
-| Navigation (single type) | Navbar links and CTA                        |
-| Landing Page → Hero      | Home page hero, including the product image |
+Every text and image on the home page and in the navbar and footer comes from these entries. The website falls back to built-in copies whenever Strapi is unreachable or a field is left empty.
+
+| Strapi entry                    | Website                                                                                                                    |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Navigation                      | Logo (light + dark), navbar links, CTA, mobile "Appearance" label; footer logo, CTA card, link columns, socials, copyright |
+| Landing Page → Hero             | Headline, subtitle, both buttons, product image                                                                            |
+| Landing Page → Products Heading | "Software for Every Part of Modern Work" title and description                                                             |
+| Landing Page → Featured Apps    | Label, apps (title, badge, description, link), link, image                                                                 |
+| Landing Page → Platform Heading | "Built for the Demands of Modern Business" title and description                                                           |
+| Landing Page → Feature Rows     | Title, description, link, image (+ optional dark image), image side                                                        |
+| Landing Page → Product Showcase | Title, description, tabs (label, badge, screenshot, optional dark one), features                                           |
+
+Line breaks typed into the long-text fields (titles of feature rows, the hero headline, descriptions) are kept — e.g. where a two-line title should wrap.

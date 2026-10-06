@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_landing_card_carousels",
+  "info": {
+    "displayName": "Card Carousel",
+    "icon": "slideshow",
+    "description": "Heading over a horizontally scrolling row of cards (stacked on phones)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "landing.carousel-card"
+    }
+  }
+}

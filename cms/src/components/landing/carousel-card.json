@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_landing_carousel_cards",
+  "info": {
+    "displayName": "Carousel Card",
+    "icon": "picture",
+    "description": "Image, title, description and link"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "action": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta"
+    }
+  }
+}

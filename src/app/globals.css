@@ -31,6 +31,8 @@
 
 /* The design system reads `--font-sans` too — point it at the next/font DM Sans loaded in layout.tsx. */
 :root {
+  /* Max width of the page frame (guide lines, sections, footer) — centred on very wide screens. */
+  --frame: 160rem;
   --font-sans:
     var(--font-dm-sans), 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 }

@@ -1,38 +1,15 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { Navbar as SiteNavbar, ThemeToggle } from '@metaupspace/ui';
 import { AppLink } from '@/components/shared/AppLink';
+import { ThemedImage } from '@/components/shared/ThemedImage';
 import type { NavContent } from '@/lib/types';
 
 interface NavbarProps {
   content: NavContent;
-}
-
-function Logo() {
-  return (
-    <>
-      <Image
-        src="/Navbar/logo.png"
-        alt="UpSpace Labs"
-        width={147}
-        height={21}
-        priority
-        className="h-[21px] w-[147px] dark:hidden"
-      />
-      <Image
-        src="/Navbar/logo-white.png"
-        alt="UpSpace Labs"
-        width={147}
-        height={21}
-        priority
-        className="hidden h-[21px] w-[147px] dark:block"
-      />
-    </>
-  );
 }
 
 const subscribeNoop = () => () => {};
@@ -56,13 +33,20 @@ export function Navbar({ content }: NavbarProps) {
 
   return (
     <SiteNavbar
-      logo={<Logo />}
-      logoLabel="UpSpace Labs home"
+      logo={
+        <ThemedImage
+          image={content.logo}
+          sizes="147px"
+          priority
+          className="h-[21px] w-[147px]"
+        />
+      }
+      logoLabel={`${content.logo.alt} home`}
       links={content.links}
       currentPath={pathname}
       cta={{ label: content.ctaText, href: content.ctaHref }}
       actions={<ThemeToggle value={toggleValue} onValueChange={setTheme} />}
-      mobileActionsLabel="Appearance"
+      mobileActionsLabel={content.appearanceLabel}
       linkComponent={AppLink}
     />
   );
