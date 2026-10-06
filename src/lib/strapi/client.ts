@@ -2,6 +2,19 @@ const STRAPI_URL = process.env.STRAPI_URL?.replace(/\/+$/, '');
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 const STRAPI_CONTACT_API_TOKEN = process.env.STRAPI_CONTACT_API_TOKEN;
 
+/**
+ * How long (seconds) Strapi responses are cached before being refetched.
+ * Development always refetches, so edits in the admin panel show up on the
+ * next page load; production defaults to 5 minutes (STRAPI_REVALIDATE_SECONDS).
+ */
+const configuredRevalidate = Number(process.env.STRAPI_REVALIDATE_SECONDS);
+const DEFAULT_REVALIDATE =
+  process.env.NODE_ENV === 'development'
+    ? 0
+    : Number.isFinite(configuredRevalidate) && configuredRevalidate >= 0
+      ? configuredRevalidate
+      : 300;
+
 export class StrapiError extends Error {}
 
 export function logStrapiFallback(message: string, error: unknown): void {
@@ -34,7 +47,7 @@ export async function strapiFetch<T>(
     headers: STRAPI_API_TOKEN
       ? { Authorization: `Bearer ${STRAPI_API_TOKEN}` }
       : undefined,
-    next: { revalidate: options?.revalidate ?? 300 },
+    next: { revalidate: options?.revalidate ?? DEFAULT_REVALIDATE },
   });
 
   if (!res.ok) {
@@ -74,6 +87,8 @@ export async function strapiPost<T>(path: string, body: unknown): Promise<T> {
 export interface StrapiMedia {
   url: string;
   alternativeText?: string | null;
+  width?: number | null;
+  height?: number | null;
 }
 
 /** Resolves a Strapi media `url` (which may be relative) to an absolute URL. */

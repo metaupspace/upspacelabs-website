@@ -18,9 +18,13 @@
     "test:coverage": "vitest --coverage",
     "prepare": "husky install",
     "clean": "rm -rf .next out node_modules/.cache",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "ds:pack": "bash scripts/pack-design-system.sh"
   },
   "dependencies": {
+    "@metaupspace/design-tokens": "file:vendor/metaupspace/metaupspace-design-tokens.tgz",
+    "@metaupspace/icons": "file:vendor/metaupspace/metaupspace-icons.tgz",
+    "@metaupspace/ui": "file:vendor/metaupspace/metaupspace-ui.tgz",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "clsx": "^2.1.1",
