@@ -1,9 +1,25 @@
 @import 'tailwindcss';
 
+/*
+ * @metaupspace design system: its CSS variables (colour, radius, shadow and
+ * type tokens, flipped by the `.dark` class) and base styles.
+ */
+@import '@metaupspace/ui/styles.css';
+@import '@metaupspace/ui/base.css';
+
+/*
+ * The design system's Tailwind preset (wired in tailwind.config.ts) and its
+ * compiled components — Tailwind generates the utilities they use from the
+ * package's dist/ just like it does for our own src/.
+ */
+@config '../../tailwind.config.mts';
+@source '../../node_modules/@metaupspace/ui/dist';
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    var(--font-dm-sans), 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 
   --color-primary: #4e46dd;
   --color-primary-hover: #3f37c9;
@@ -11,6 +27,12 @@
 
   --color-background: #ffffff;
   --color-foreground: #0a0a0a;
+}
+
+/* The design system reads `--font-sans` too — point it at the next/font DM Sans loaded in layout.tsx. */
+:root {
+  --font-sans:
+    var(--font-dm-sans), 'DM Sans', ui-sans-serif, system-ui, sans-serif;
 }
 
 .dark {

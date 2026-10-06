@@ -1,7 +1,8 @@
 import type { NavContent } from '../types';
-import { strapiFetch, StrapiError } from '@/lib/strapi/client';
+import { logStrapiFallback, strapiFetch } from '@/lib/strapi/client';
 import { mapNavContent, type RawNavigation } from '@/lib/strapi/mappers';
 
+/** Used whole when Strapi is unreachable, and field by field for anything left empty. */
 export const navContentFallback: NavContent = {
   links: [
     { label: 'Home', href: '/' },
@@ -15,20 +16,22 @@ export const navContentFallback: NavContent = {
 
 async function fetchNavigation(): Promise<RawNavigation | null> {
   try {
-    return await strapiFetch<RawNavigation>(
+    return await strapiFetch<RawNavigation | null>(
       '/navigation?populate[navLinks]=true'
     );
   } catch (err) {
-    if (process.env.NODE_ENV !== 'production' && err instanceof StrapiError) {
-      console.warn(
-        `[strapi] falling back to static navigation content: ${err.message}`
+    // Unreachable, unconfigured, non-OK or non-JSON — all fall back.
+    if (process.env.NODE_ENV !== 'production') {
+      logStrapiFallback(
+        '[strapi] falling back to static navigation content',
+        err
       );
     }
     return null;
   }
 }
 
+/** Navigation from Strapi, falling back field by field to `navContentFallback`. */
 export async function getNavContent(): Promise<NavContent> {
-  const raw = await fetchNavigation();
-  return raw ? mapNavContent(raw) : navContentFallback;
+  return mapNavContent(await fetchNavigation(), navContentFallback);
 }

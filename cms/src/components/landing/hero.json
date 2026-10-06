@@ -3,7 +3,7 @@
   "info": {
     "displayName": "Hero",
     "icon": "star",
-    "description": "Home page hero — headline, subtitle and two CTAs"
+    "description": "Home page hero — headline, subtitle, two CTAs and a product image"
   },
   "options": {},
   "attributes": {
@@ -25,6 +25,11 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.cta"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
     }
   }
 }

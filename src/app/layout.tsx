@@ -5,7 +5,12 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/layout/Navbar';
 import { getNavContent } from '@/lib/content/navigation';
 
-const dmSans = DM_Sans({ subsets: ['latin'] });
+// `opsz` axis: design-system components tune DM Sans' optical size per style.
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  axes: ['opsz'],
+  variable: '--font-dm-sans',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +29,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={dmSans.className}>
+      <body className={`${dmSans.variable} ${dmSans.className}`}>
         <ThemeProvider>
           <Navbar content={navContent} />
           <main>{children}</main>

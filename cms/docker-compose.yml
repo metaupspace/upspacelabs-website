@@ -30,6 +30,7 @@ services:
     volumes:
       - ./src:/opt/app/src
       - ./config:/opt/app/config
+      - ./database:/opt/app/database
       - ./public/uploads:/opt/app/public/uploads
       - ./package.json:/opt/app/package.json
       - ./tsconfig.json:/opt/app/tsconfig.json
