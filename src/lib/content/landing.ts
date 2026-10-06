@@ -158,7 +158,7 @@ export const landingPageFallback: LandingPageContent = {
       description:
         'Adapts seamlessly to any device, ensuring accessibility on-the-go.',
       image: DEFAULT_CAROUSEL_IMAGES[n],
-      action: { label: 'Read More', href: '/product' },
+      action: { label: 'Read More', href: '/blog/northfield-logistics' },
     })),
   },
   customerStories: [

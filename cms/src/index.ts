@@ -168,7 +168,7 @@ const SEEDS = {
         title: 'Intuitive navigation',
         description:
           'Adapts seamlessly to any device, ensuring accessibility on-the-go.',
-        action: { label: 'Read More', href: '/product' },
+        action: { label: 'Read More', href: '/blog/northfield-logistics' },
       })),
     },
     customerStories: [
@@ -206,13 +206,146 @@ const SEEDS = {
       },
     ],
   },
+  'api::blog-page.blog-page': {
+    breadcrumbLabel: 'Blog',
+    title: 'Building a foundation for your startup for growth',
+    description:
+      'A connected ecosystem of products designed to simplify operations, automate workflows, and keep teams aligned.',
+  },
+  // Collection type: one example post, created only while there are none.
+  'api::blog-post.blog-post': {
+    title: 'How Northfield Logistics cut HR admin by 60% with UpSentrix People',
+    slug: 'northfield-logistics',
+    excerpt:
+      'How a 12-city logistics company moved 1,200 people off spreadsheets and onto UpSentrix People.',
+    summary:
+      '[Northfield Logistics](#) runs warehouses and delivery fleets across 12 cities in India. As its workforce passed 1,200 people, the company moved from spreadsheets to UpSentrix People to manage hiring, attendance, leave, and payroll in one place.',
+    stats: [
+      { value: '60%', label: 'less time spent on HR admin' },
+      { value: '1,200+', label: 'employees managed in one system' },
+      { value: '3 days', label: 'to onboard a new hire, down from two weeks' },
+      {
+        value: '4 days',
+        label: 'of monthly payroll work cut to one afternoon',
+      },
+    ],
+    body: [
+      {
+        __component: 'blog.text-section',
+        body: 'Northfield Logistics grew fast. In three years, it went from a single warehouse in Gurugram to operations in 12 cities, with drivers, warehouse staff, and office teams working different shifts across different sites. Its HR team of six was managing all of it with spreadsheets, email threads, and paper forms.\nThe cost showed up everywhere. Leave requests got lost, attendance had to be reconciled by hand every month, and new hires sometimes waited two weeks to be fully set up. The team needed one system everyone could use, from the head office to the loading dock.',
+      },
+      {
+        __component: 'blog.pull-quote',
+        quote:
+          'UpSentrix People gave us one place for every employee, from the head office to the loading dock. Our HR team finally has time to focus on people instead of paperwork.',
+        author: 'Priya Malhotra',
+        role: 'Head of HR, Northfield Logistics',
+      },
+      {
+        __component: 'blog.text-section',
+        heading: 'Northfield needed one place for every employee',
+        body: 'Before UpSentrix People, employee records lived in four different tools. Managers could not see who was on shift, who was on leave, or who was due for a review without asking HR. HR, in turn, spent most of its week answering those questions instead of working on hiring and retention.\nNorthfield chose UpSentrix People because it brought records, attendance, leave, and onboarding into a single view, and because it worked on the phones its field staff already carried. No new hardware, no long training sessions.\n\nThe rollout took six weeks. The UpSpace Labs team migrated more than 1,200 employee records, set up shift rules for each site, and connected attendance data directly to payroll. Northfield started with two warehouses, gathered feedback from managers, and then rolled out to every city.\nField staff now mark attendance, apply for leave, and download payslips from their phones. Managers approve requests in a few taps and see their team’s schedule at a glance. HR no longer chases paperwork at the end of the month.\n\nOnboarding changed the most. New hires now get a digital checklist before their first day, sign documents online, and have access to the tools they need on day one. What once took up to two weeks now takes three days.\nPayroll became faster and more accurate too. Because attendance and leave feed straight into payroll, the monthly reconciliation that used to take the HR team four days is now done in an afternoon. Employees noticed the difference as well. Payslips arrive on time, leave balances are always up to date, and questions that once needed an email to HR are answered in the app.',
+      },
+      {
+        __component: 'blog.text-section',
+        heading: 'What comes next for Northfield',
+        body: 'With the basics running smoothly, Northfield’s HR team now spends its time on work that matters more: improving retention among drivers, building clear career paths for warehouse staff, and planning hiring for three new cities next year.\nThe company is now exploring UpSentrix Learn to train new warehouse staff and UpSentrix Score to track team performance, both connected to the same employee data it already manages in UpSentrix People.',
+      },
+    ],
+    moreStories: {
+      title: 'More Stories',
+      description: 'More stories about how teams work better with UpSentrix.',
+      cards: [
+        {
+          title: 'Inside UpSpace Labs',
+          description:
+            'A look at the space and the team of 20 building UpSpace Labs.',
+          action: { label: 'Read More', href: '/blog/inside-upspace-labs' },
+        },
+        {
+          title: 'Why we built UpSentrix',
+          description:
+            'The problem behind our first product and how we plan to solve it.',
+          action: { label: 'Read More', href: '/blog/why-we-built-upsentrix' },
+        },
+        {
+          title: 'Learning that scales',
+          description: 'How we approach learning tools for growing teams.',
+          action: { label: 'Read More', href: '/blog/learning-that-scales' },
+        },
+        {
+          title: 'Teams that stay in sync',
+          description:
+            'How UpSentrix keeps distributed teams working from the same data.',
+          action: { label: 'Read More', href: '/blog/teams-that-stay-in-sync' },
+        },
+      ],
+    },
+    logosLabel: 'UpSentrix Products Used by Northfield',
+    logos: [
+      { name: 'Hobbes' },
+      { name: 'Digit' },
+      { name: 'Writesonic' },
+      { name: 'ltv.ai' },
+      { name: 'Digit' },
+      { name: 'Gigamind' },
+    ],
+  },
 } as const;
 
 type SeededUid = keyof typeof SEEDS;
 
+/** More entries for collection types, created together with the first one. */
+const EXTRA_ENTRIES: Partial<Record<SeededUid, object[]>> = {
+  // Example posts so the /blog grid and "More stories" links have pages.
+  'api::blog-post.blog-post': [
+    {
+      title: 'Inside UpSpace Labs',
+      slug: 'inside-upspace-labs',
+      excerpt: 'A look at the space and the team of 20 building UpSpace Labs.',
+      summary: 'A look at the space and the team of 20 building UpSpace Labs.',
+    },
+    {
+      title: 'Why we built UpSentrix',
+      slug: 'why-we-built-upsentrix',
+      excerpt:
+        'The problem behind our first product and how we plan to solve it.',
+      summary:
+        'The problem behind our first product and how we plan to solve it.',
+    },
+    {
+      title: 'Learning that scales',
+      slug: 'learning-that-scales',
+      excerpt: 'How we approach learning tools for growing teams.',
+      summary: 'How we approach learning tools for growing teams.',
+    },
+    {
+      title: 'Teams that stay in sync',
+      slug: 'teams-that-stay-in-sync',
+      excerpt:
+        'How UpSentrix keeps distributed teams working from the same data.',
+      summary:
+        'How UpSentrix keeps distributed teams working from the same data.',
+    },
+    {
+      title: 'Payroll without the month-end rush',
+      slug: 'payroll-without-the-month-end-rush',
+      excerpt:
+        'What changes when attendance and leave feed straight into payroll.',
+      summary:
+        'What changes when attendance and leave feed straight into payroll.',
+    },
+  ],
+};
+
+/** Collection types also need `findOne` (single entries by id). */
+const COLLECTION_TYPES: SeededUid[] = ['api::blog-post.blog-post'];
+
 /** Public website content — readable without an API token. */
-const PUBLIC_READ_ACTIONS = (Object.keys(SEEDS) as SeededUid[]).map(
-  uid => `${uid}.find`
+const PUBLIC_READ_ACTIONS = (Object.keys(SEEDS) as SeededUid[]).flatMap(uid =>
+  COLLECTION_TYPES.includes(uid)
+    ? [`${uid}.find`, `${uid}.findOne`]
+    : [`${uid}.find`]
 );
 
 async function seedSingleTypes(strapi: Core.Strapi) {
@@ -224,6 +357,10 @@ async function seedSingleTypes(strapi: Core.Strapi) {
     // until `strapi ts:generate-types` has been run.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await strapi.documents(uid).create({ data: SEEDS[uid] as any });
+    for (const entry of EXTRA_ENTRIES[uid] ?? []) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await strapi.documents(uid).create({ data: entry as any });
+    }
     strapi.log.info(`[seed] created initial ${uid}`);
   }
 }

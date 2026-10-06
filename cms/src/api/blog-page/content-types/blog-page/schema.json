@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "blog_pages",
+  "info": {
+    "singularName": "blog-page",
+    "pluralName": "blog-pages",
+    "displayName": "Blog Page",
+    "description": "The /blog listing page header"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "breadcrumbLabel": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

@@ -1,5 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  textToGroups,
+  mapBlogCard,
+  mapBlogPage,
+  mapBlogPost,
+  plainText,
   mapFooterContent,
   mapCardCarousel,
   mapCustomerStories,
@@ -15,6 +20,7 @@ import {
   navContentFallback,
 } from '@/lib/content/navigation';
 import { landingPageFallback } from '@/lib/content/landing';
+import { blogPageFallback, blogPostFallbacks } from '@/lib/content/blog';
 
 const heroFallback = landingPageFallback.hero;
 
@@ -387,6 +393,168 @@ describe('mapFooterContent', () => {
     ]);
     expect(footer.copyright).toBe(fallback.copyright);
     expect(footer.logo).toEqual(fallback.logo);
+  });
+});
+
+describe('mapBlogPost', () => {
+  const fallback = blogPostFallbacks[0];
+
+  it('uses Strapi values and falls back per field', () => {
+    const post = mapBlogPost(
+      {
+        slug: 'northfield-logistics',
+        title: 'New title',
+        summary: ' ',
+        coverImage: {
+          url: 'https://cdn.test/cover.jpg',
+          width: 800,
+          height: 776,
+        },
+      },
+      fallback
+    );
+    expect(post).toEqual({
+      slug: 'northfield-logistics',
+      title: 'New title',
+      summary: fallback.summary,
+      excerpt: fallback.excerpt,
+      coverImage: {
+        ...fallback.coverImage,
+        src: 'https://cdn.test/cover.jpg',
+        width: 800,
+        height: 776,
+      },
+      logosLabel: fallback.logosLabel,
+      logos: fallback.logos,
+      stats: fallback.stats,
+      body: fallback.body,
+      moreStories: fallback.moreStories,
+    });
+  });
+
+  it('maps logos, filling images by position and skipping unnamed ones', () => {
+    const post = mapBlogPost(
+      {
+        title: 'T',
+        logosLabel: 'Used by us',
+        logos: [
+          { name: 'Acme', image: { url: 'https://cdn.test/acme.png' } },
+          { name: 'Beta' },
+          { name: '' },
+        ],
+      },
+      fallback
+    );
+    expect(post.logosLabel).toBe('Used by us');
+    expect(post.logos.map(logo => [logo.name, logo.image.src])).toEqual([
+      ['Acme', 'https://cdn.test/acme.png'],
+      ['Beta', fallback.logos[1].image.src],
+    ]);
+    expect(mapBlogPost({ title: 'T', logos: [] }, fallback).logos).toEqual(
+      fallback.logos
+    );
+  });
+
+  it('maps the body blocks in order and skips empty or unknown ones', () => {
+    const post = mapBlogPost(
+      {
+        title: 'T',
+        stats: [{ value: '60%', label: 'less admin' }, { value: '' }],
+        body: [
+          {
+            __component: 'blog.text-section',
+            heading: 'Intro',
+            body: 'A\nB\n\nC',
+          },
+          {
+            __component: 'blog.pull-quote',
+            quote: 'Great',
+            author: 'Ana',
+            role: '',
+          },
+          { __component: 'blog.text-section', body: '  ' },
+          { __component: 'blog.image', caption: 'No image' },
+          { __component: 'blog.unknown' },
+        ],
+      },
+      fallback
+    );
+    expect(post.stats).toEqual([{ value: '60%', label: 'less admin' }]);
+    expect(post.body).toEqual([
+      { type: 'text', heading: 'Intro', groups: [['A', 'B'], ['C']] },
+      { type: 'quote', quote: 'Great', author: 'Ana', role: null },
+    ]);
+  });
+
+  it('falls back to the bundled stats and body when Strapi has none', () => {
+    const post = mapBlogPost({ title: 'T', stats: [], body: [] }, fallback);
+    expect(post.stats).toEqual(fallback.stats);
+    expect(post.body).toEqual(fallback.body);
+  });
+
+  it('maps More stories, falling back to the bundled carousel', () => {
+    expect(mapBlogPost({ title: 'T' }, fallback).moreStories).toEqual(
+      fallback.moreStories
+    );
+    const { moreStories } = mapBlogPost(
+      {
+        title: 'T',
+        moreStories: { title: 'Related', cards: [{ title: 'One' }] },
+      },
+      fallback
+    );
+    expect(moreStories.title).toBe('Related');
+    expect(moreStories.description).toBe(fallback.moreStories.description);
+    expect(moreStories.cards).toHaveLength(1);
+    expect(moreStories.cards[0].image).toEqual(
+      fallback.moreStories.cards[0].image
+    );
+  });
+
+  it('splits body text into groups (blank line) of lines', () => {
+    expect(textToGroups('one\ntwo \n\n\n three\n')).toEqual([
+      ['one', 'two'],
+      ['three'],
+    ]);
+  });
+
+  it('keeps the bundled cover when none is uploaded', () => {
+    expect(mapBlogPost({ title: 'T' }, fallback).coverImage).toEqual(
+      fallback.coverImage
+    );
+  });
+});
+
+describe('blog listing', () => {
+  const cover = blogPostFallbacks[0].coverImage;
+
+  it('maps a card, deriving the excerpt from the summary when unset', () => {
+    expect(
+      mapBlogCard(
+        { slug: 'a', title: 'A', summary: 'Cut **HR admin** by 60%.' },
+        cover
+      )
+    ).toEqual({
+      slug: 'a',
+      title: 'A',
+      excerpt: plainText('Cut **HR admin** by 60%.'),
+      coverImage: cover,
+    });
+    expect(
+      mapBlogCard({ slug: 'a', title: 'A', excerpt: 'Short' }, cover)?.excerpt
+    ).toBe('Short');
+  });
+
+  it('drops posts without a slug or title', () => {
+    expect(mapBlogCard({ title: 'A' }, cover)).toBeNull();
+    expect(mapBlogCard({ slug: 'a', title: ' ' }, cover)).toBeNull();
+  });
+
+  it('falls back per field for the page header', () => {
+    expect(mapBlogPage(null, blogPageFallback)).toEqual(blogPageFallback);
+    expect(
+      mapBlogPage({ title: 'Stories', description: '' }, blogPageFallback)
+    ).toEqual({ ...blogPageFallback, title: 'Stories' });
   });
 });
 

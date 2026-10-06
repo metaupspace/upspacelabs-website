@@ -6,8 +6,9 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 import type { CardCarouselContent } from '@/lib/types';
 
 /**
- * "Building a foundation for your startup for growth": a heading over the
- * design system's CardCarousel — 398px cards 24px apart, auto-scrolling
+ * A heading over the design system's CardCarousel — the home page's
+ * "Building a foundation…" section and a blog post's "More stories".
+ * The carousel: — 398px cards 24px apart, auto-scrolling
  * (marquee) inside the page guides from md up, stacked full width (inset 43px) on phones.
  * Desktop: 18px description 48px above the cards (1.51× design capture);
  * phones: the 31px bold mobile heading.

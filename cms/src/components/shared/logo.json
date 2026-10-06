@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_logos",
+  "info": {
+    "displayName": "Logo",
+    "icon": "picture",
+    "description": "A company or product logo with its name (used as the accessible label)"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "href": {
+      "type": "string"
+    }
+  }
+}

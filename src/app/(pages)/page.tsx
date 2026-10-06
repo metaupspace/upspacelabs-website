@@ -1,6 +1,6 @@
 import PageFrame from '@/components/layout/PageFrame';
 import { getLandingPageContent } from '@/lib/content/landing';
-import { CardCarouselSection } from './fragments/CardCarouselSection';
+import { CardCarouselSection } from '@/components/sections/CardCarouselSection';
 import { CustomerStories } from './fragments/CustomerStories';
 import { FeaturedApps } from './fragments/FeaturedApps';
 import { HeroSection } from './fragments/HeroSection';
