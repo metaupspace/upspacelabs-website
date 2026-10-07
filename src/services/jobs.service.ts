@@ -11,7 +11,8 @@ import type {
  * the browser calls it directly (the API allows any origin).
  */
 export const JOBS_API_URL = (
-  process.env.NEXT_PUBLIC_JOBS_API_URL ?? 'https://api.jobs.metaupspace.com'
+  process.env.NEXT_PUBLIC_JOBS_API_URL ??
+  'https://your-job-portal.upspacelabs.com'
 ).replace(/\/+$/, '');
 
 /** How long (seconds) server-side job fetches are cached. */
