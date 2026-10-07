@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_landing_feature_rows",
+  "info": {
+    "displayName": "Feature Row",
+    "icon": "layout",
+    "description": "Title, description and link beside an illustration"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "action": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "darkImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": ["left", "right"],
+      "default": "right"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "About Page",
+    "description": "The /about-us page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "landing.hero"
+    },
+    "founded": {
+      "type": "component",
+      "repeatable": false,
+      "component": "about.founded"
+    },
+    "team": {
+      "type": "component",
+      "repeatable": false,
+      "component": "about.team"
+    },
+    "offices": {
+      "type": "component",
+      "repeatable": false,
+      "component": "about.offices"
+    },
+    "progress": {
+      "type": "component",
+      "repeatable": false,
+      "component": "about.progress"
+    },
+    "stories": {
+      "type": "component",
+      "repeatable": false,
+      "component": "landing.card-carousel"
+    }
+  }
+}

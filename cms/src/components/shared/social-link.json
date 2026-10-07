@@ -8,7 +8,7 @@
   "attributes": {
     "platform": {
       "type": "enumeration",
-      "enum": ["linkedin", "twitter", "github", "youtube"],
+      "enum": ["linkedin", "twitter", "instagram", "github", "youtube"],
       "required": true
     },
     "href": {

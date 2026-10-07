@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_landing_showcase_tabs",
+  "info": {
+    "displayName": "Showcase Tab",
+    "icon": "picture",
+    "description": "One product tab \u2014 label, optional status badge, screenshot, and its card on phones"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "badge": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "darkImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "showCard": {
+      "type": "boolean",
+      "default": true
+    },
+    "cardTitle": {
+      "type": "string"
+    },
+    "cardImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "cardAction": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta"
+    }
+  }
+}

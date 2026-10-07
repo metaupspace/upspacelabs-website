@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_footer_ctas",
+  "info": {
+    "displayName": "Footer CTA",
+    "icon": "cursor",
+    "description": "Call-to-action card above the footer. Use a line break in the title to stack it on two lines"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

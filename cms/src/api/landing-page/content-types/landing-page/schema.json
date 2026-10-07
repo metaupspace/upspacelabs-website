@@ -17,6 +17,41 @@
       "repeatable": false,
       "component": "landing.hero",
       "required": true
+    },
+    "productsHeading": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-heading"
+    },
+    "featuredApps": {
+      "type": "component",
+      "repeatable": false,
+      "component": "landing.featured-apps"
+    },
+    "platformHeading": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-heading"
+    },
+    "featureRows": {
+      "type": "component",
+      "repeatable": true,
+      "component": "landing.feature-row"
+    },
+    "productShowcase": {
+      "type": "component",
+      "repeatable": false,
+      "component": "landing.product-showcase"
+    },
+    "cardCarousel": {
+      "type": "component",
+      "repeatable": false,
+      "component": "landing.card-carousel"
+    },
+    "customerStories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "landing.customer-story"
     }
   }
 }

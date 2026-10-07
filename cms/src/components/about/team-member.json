@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_about_team_members",
+  "info": {
+    "displayName": "Team Member",
+    "icon": "user",
+    "description": "A person in the \"Meet the team\" carousel"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

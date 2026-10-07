@@ -12,6 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "logoDark": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
     "navLinks": {
       "type": "component",
       "repeatable": true,
@@ -24,6 +34,9 @@
     "ctaHref": {
       "type": "string",
       "required": true
+    },
+    "appearanceLabel": {
+      "type": "string"
     },
     "footerColumns": {
       "type": "component",
@@ -38,6 +51,16 @@
     "copyright": {
       "type": "string",
       "required": true
+    },
+    "footerCta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.footer-cta"
+    },
+    "footerLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
     }
   }
 }

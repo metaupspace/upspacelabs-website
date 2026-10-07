@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_about_milestones",
+  "info": {
+    "displayName": "Milestone",
+    "icon": "calendar",
+    "description": "A point on the \"Our path of progress\" timeline"
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "description": "Short line under the title — \"Launching\", \"Upcoming\""
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

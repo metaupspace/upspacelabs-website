@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_career_job_details",
+  "info": {
+    "displayName": "Job Detail",
+    "icon": "file",
+    "description": "Labels of the /career/<job> page (the job itself comes from the Job Portal API)"
+  },
+  "options": {},
+  "attributes": {
+    "aboutTitle": {
+      "type": "string"
+    },
+    "requirementsTitle": {
+      "type": "string"
+    },
+    "locationLabel": {
+      "type": "string"
+    },
+    "employmentTypeLabel": {
+      "type": "string"
+    },
+    "departmentLabel": {
+      "type": "string"
+    },
+    "levelLabel": {
+      "type": "string"
+    },
+    "skillsLabel": {
+      "type": "string"
+    },
+    "experienceLabel": {
+      "type": "string"
+    },
+    "educationLabel": {
+      "type": "string"
+    },
+    "certificationsLabel": {
+      "type": "string"
+    },
+    "viewMoreLabel": {
+      "type": "string"
+    },
+    "viewLessLabel": {
+      "type": "string"
+    },
+    "applyLabel": {
+      "type": "string"
+    },
+    "unavailableMessage": {
+      "type": "string"
+    }
+  }
+}

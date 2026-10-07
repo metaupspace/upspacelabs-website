@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_career_how_we_works",
+  "info": {
+    "displayName": "How We Work",
+    "icon": "layer",
+    "description": "Eyebrow, title and paragraphs beside an illustration"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "description": "A blank line starts a new paragraph"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

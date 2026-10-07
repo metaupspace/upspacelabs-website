@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blog_text_sections",
+  "info": {
+    "displayName": "Text Section",
+    "icon": "align-left",
+    "description": "Optional heading and body text. A single line break starts a new line; a blank line starts a new paragraph group"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

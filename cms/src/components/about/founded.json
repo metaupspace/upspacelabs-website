@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_about_foundeds",
+  "info": {
+    "displayName": "Founded",
+    "icon": "earth",
+    "description": "\"Founded in Delhi\" — text beside the globe; a blank line starts a new paragraph"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "officeLat": {
+      "type": "decimal"
+    },
+    "officeLng": {
+      "type": "decimal"
+    },
+    "connections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.globe-connection"
+    }
+  }
+}

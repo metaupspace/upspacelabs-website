@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_career_perks",
+  "info": {
+    "displayName": "Career Perk",
+    "icon": "star",
+    "description": "A reason to join, with a short line under it"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

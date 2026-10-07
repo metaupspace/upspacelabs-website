@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_landing_featured_apps",
+  "info": {
+    "displayName": "Featured Apps",
+    "icon": "dashboard",
+    "description": "Home page card — product image beside a grid of apps and a link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "apps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "landing.featured-app"
+    },
+    "action": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

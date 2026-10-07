@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_landing_product_showcases",
+  "info": {
+    "displayName": "Product Showcase",
+    "icon": "monitor",
+    "description": "Heading, auto-advancing product tabs with screenshots, and a feature row"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "tabs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "landing.showcase-tab"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.feature"
+    }
+  }
+}
