@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_career_apply_forms",
+  "info": {
+    "displayName": "Apply Form",
+    "icon": "pencil",
+    "description": "Wording of /career/<job>/apply (the form submits to the Job Portal API)"
+  },
+  "options": {},
+  "attributes": {
+    "titleTemplate": {
+      "type": "string"
+    },
+    "breadcrumbLabel": {
+      "type": "string"
+    },
+    "submitLabel": {
+      "type": "string"
+    },
+    "submittingLabel": {
+      "type": "string"
+    },
+    "uploadLabel": {
+      "type": "string"
+    },
+    "successTitle": {
+      "type": "string"
+    },
+    "successMessage": {
+      "type": "text"
+    },
+    "duplicateMessage": {
+      "type": "string"
+    },
+    "rateLimitMessage": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "techSectionTitle": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "json",
+      "description": "Per field: { label, placeholder, options? } — keys: firstName, lastName, email, contactNumber, whatsappNumber, currentLocation, linkedinId, qualification, experience, lastSalary, noticePeriod, comfortableFlexibleShifts, hearAboutUs, referredBy, githubId, portfolioLink, technologiesKnown, hardestProblem, whyGoodFit, whyJoinUs"
+    }
+  }
+}

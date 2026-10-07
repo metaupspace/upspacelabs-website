@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import type { LegalPage } from '@/lib/types';
 import { logStrapiFallback, strapiFetch } from '@/lib/strapi/client';
-import { mapLegalPage, type RawLegalPage } from '@/lib/strapi/legal-mappers';
+import { mapLegalPage, type RawLegalPage } from '@/lib/strapi/mappers';
 import { legalPageFallbacks } from './legal-fallback';
 
 const builtIn = (slug: string): LegalPage | null => {

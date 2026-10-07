@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Route } from 'next';
+import { useSelectedLayoutSegments } from 'next/navigation';
 import { ArrowRight } from '@metaupspace/icons';
 import { SiteFooter as FooterBlock } from '@metaupspace/ui';
 import { SOCIAL_ICONS } from '@/lib/brand-icons';
+import { hidesFooterCta } from '@/lib/footer';
 import type { FooterContent } from '@/lib/types';
 
 /**
@@ -38,13 +40,16 @@ function Lines({ text }: { text: string }) {
 
 export function SiteFooter({ content }: { content: FooterContent }) {
   const { logo, cta, columns, socials, copyright } = content;
+  // No CTA card on role / apply pages and the policy pages (decided during SSR, so no flash).
+  const showCta = !hidesFooterCta(useSelectedLayoutSegments());
 
   return (
     <FooterBlock
       tone="dark"
       // Match the page guides: same side gutters at every width, card flush to the lines.
       maxWidth={4000}
-      className={FOOTER_LAYOUT}
+      // Without the card, sit above the page guides (they overlap the card's top edge, and would poke into the footer).
+      className={showCta ? FOOTER_LAYOUT : `${FOOTER_LAYOUT} relative z-30`}
       pageBackground="var(--color-background)"
       watermark="UPSPACE LABS"
       // "UPSPACE LABS" in DM Sans bold is 6.71em wide, so 13.4cqw spans ~90% of the
@@ -75,37 +80,41 @@ export function SiteFooter({ content }: { content: FooterContent }) {
         title: col.heading,
         links: col.links.map(l => ({ label: l.label, href: l.href })),
       }))}
-      cta={{
-        title: <Lines text={cta.title} />,
-        description: cta.description,
-        action: {
-          label: cta.action.label,
-          href: cta.action.href,
-          icon: <ArrowRight aria-hidden className="size-4" />,
-          showArrow: true,
-        },
-        // The upspacelabs design's button blue (upsentrix uses indigo #4F46E5).
-        buttonBackground: '#2563EB',
-        // The design system's ring placement, in the upspacelabs design's indigo and purple.
-        rings: [
-          {
-            color: '#6366F1',
-            x: 0,
-            y: 5.2,
-            from: 'top',
-            radius: 21.2,
-            thickness: 8.6,
-          },
-          {
-            color: '#A855F7',
-            x: 100,
-            y: -1.7,
-            from: 'bottom',
-            radius: 23.2,
-            thickness: 8.75,
-          },
-        ],
-      }}
+      cta={
+        showCta
+          ? {
+              title: <Lines text={cta.title} />,
+              description: cta.description,
+              action: {
+                label: cta.action.label,
+                href: cta.action.href,
+                icon: <ArrowRight aria-hidden className="size-4" />,
+                showArrow: true,
+              },
+              // The upspacelabs design's button blue (upsentrix uses indigo #4F46E5).
+              buttonBackground: '#2563EB',
+              // The design system's ring placement, in the upspacelabs design's indigo and purple.
+              rings: [
+                {
+                  color: '#6366F1',
+                  x: 0,
+                  y: 5.2,
+                  from: 'top',
+                  radius: 21.2,
+                  thickness: 8.6,
+                },
+                {
+                  color: '#A855F7',
+                  x: 100,
+                  y: -1.7,
+                  from: 'bottom',
+                  radius: 23.2,
+                  thickness: 8.75,
+                },
+              ],
+            }
+          : undefined
+      }
       renderLink={({ href, external, onClick, className, style, children }) =>
         external || !href ? (
           <a

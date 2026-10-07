@@ -6,14 +6,14 @@ import type { CareerVideo } from '@/lib/types';
  * Life at UpSpace Labs in video: the design system's VideoGallery in its
  * bento layout (tall tile, two stacked tiles, tall tile), inset 24px from the
  * page guides. Tiles 280px tall rows, 12px apart, 10px corners, a 38px play
- * button; playing opens the design system's modal player. Phones stack the
- * tiles.
+ * button; playing opens the design system's modal player. Phones get a
+ * full-bleed carousel: one video at a time, advancing every 4 seconds.
  */
 export function CareerGallery({ videos }: { videos: CareerVideo[] }) {
   if (!videos.length) return null;
 
   return (
-    <InnerGuideContent contentClassName="px-6 pb-16 md:pb-[72px]">
+    <InnerGuideContent contentClassName="pb-16 md:px-6 md:pb-[72px]">
       <VideoGallery
         aria-label="Life at UpSpace Labs"
         items={videos.map((video, index) => ({
@@ -26,8 +26,16 @@ export function CareerGallery({ videos }: { videos: CareerVideo[] }) {
         gap="12px"
         rowHeight="280px"
         radius="10px"
-        mobileAspectRatio="406 / 283"
-        classNames={{ playButton: 'size-[38px] [&_svg]:size-4' }}
+        // Phones: one full-bleed, near-square video at a time, sliding on every 4s.
+        mobileLayout="carousel"
+        mobileInterval={4000}
+        mobileAspectRatio="483 / 505"
+        classNames={{
+          root: 'max-md:gap-0',
+          tile: 'max-md:rounded-none',
+          playButton:
+            'size-[54px] md:size-[38px] [&_svg]:size-[22px] md:[&_svg]:size-4',
+        }}
       />
     </InnerGuideContent>
   );

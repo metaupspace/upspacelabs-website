@@ -12,11 +12,7 @@ vi.mock('@/lib/strapi/client', () => ({
 }));
 
 import { getLegalPage, getLegalSlugs } from '@/lib/content/legal';
-import {
-  mapLegalPage,
-  parseLegalBody,
-  slugify,
-} from '@/lib/strapi/legal-mappers';
+import { mapLegalPage, parseLegalBody, slugify } from '@/lib/strapi/mappers';
 
 describe('parseLegalBody', () => {
   it('splits paragraphs, bullet lists and sub-headings', () => {

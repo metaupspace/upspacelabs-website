@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     "cms/dist/**",
     "cms/build/**",
     "cms/.strapi/**",
+    // Strapi's own example files (renamed to use them)
+    "cms/src/admin/*.example.*",
     "cms/.tmp/**",
     "cms/types/generated/**",
   ]),

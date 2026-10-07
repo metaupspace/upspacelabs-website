@@ -3,7 +3,7 @@ import {
   normalizeSubmission,
   validateSubmission,
 } from '@/lib/contact/validate';
-import { mapContactPageContent } from '@/lib/strapi/contact-mappers';
+import { mapContactPageContent } from '@/lib/strapi/mappers';
 import { contactPageFallback } from '@/lib/content/contact-fallback';
 
 const valid = {

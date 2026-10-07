@@ -41,6 +41,16 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.section-heading"
+    },
+    "jobDetail": {
+      "type": "component",
+      "repeatable": false,
+      "component": "career.job-detail"
+    },
+    "applyForm": {
+      "type": "component",
+      "repeatable": false,
+      "component": "career.apply-form"
     }
   }
 }

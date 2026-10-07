@@ -18,7 +18,8 @@ function Sparkle() {
 /**
  * "Why people choose to build with us": a blue eyebrow, the title and a
  * short description on the left; a two-column grid of perks (star, title,
- * one line) on the right. From lg up the grid starts 46.2% across;
+ * one line) on the right; on phones the perks are a list with a line
+ * under each. From lg up the grid starts 46.2% across;
  * narrower screens stack the text over the grid, which is one column on
  * phones.
  */
@@ -50,15 +51,19 @@ export function CareerWhyJoin({ content }: { content: WhyJoinContent }) {
           )}
         </div>
 
-        <ul className="grid grid-cols-1 gap-x-[26px] gap-y-10 sm:grid-cols-2 md:gap-y-[46px] lg:pt-[14px]">
+        <ul className="grid grid-cols-1 gap-x-[26px] sm:grid-cols-2 sm:gap-y-10 md:gap-y-[46px] lg:pt-[14px]">
           {perks.map(perk => (
-            <li key={perk.title} className="max-w-[18rem]">
+            <li
+              key={perk.title}
+              // Phones: a line under every perk but the last, the text inset inside it.
+              className="border-neutral-200 max-sm:border-b max-sm:px-5 max-sm:pt-7 max-sm:pb-7 max-sm:first:pt-0 max-sm:last:border-b-0 dark:border-neutral-800"
+            >
               <Sparkle />
-              <h3 className="mt-[15px] text-[19.5px] [line-height:1.2] font-bold tracking-[-0.01em] text-black [font-variation-settings:normal] dark:text-white">
+              <h3 className="mt-[15px] max-w-[18rem] text-[19.5px] [line-height:1.2] font-bold tracking-[-0.01em] text-black [font-variation-settings:normal] dark:text-white">
                 {perk.title}
               </h3>
               {perk.description && (
-                <p className="mt-2.5 pl-0.5 text-base [line-height:23px] text-neutral-500 dark:text-neutral-400">
+                <p className="mt-2.5 max-w-[18rem] pl-0.5 text-base [line-height:23px] text-neutral-500 dark:text-neutral-400">
                   {perk.description}
                 </p>
               )}

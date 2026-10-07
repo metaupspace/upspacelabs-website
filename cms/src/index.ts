@@ -426,6 +426,140 @@ const SEEDS = {
       description:
         'Everyone works from one office, which keeps communication simple and decisions fast. Come in, sit with the team, and see what we are building.',
     },
+    jobDetail: {
+      aboutTitle: 'About the role',
+      requirementsTitle: 'What we’re looking for',
+      locationLabel: 'Location',
+      employmentTypeLabel: 'Employment Type',
+      departmentLabel: 'Department',
+      levelLabel: 'Experience Level',
+      skillsLabel: 'Skills',
+      experienceLabel: 'Experience',
+      educationLabel: 'Education',
+      certificationsLabel: 'Certifications',
+      viewMoreLabel: 'View More',
+      viewLessLabel: 'View Less',
+      applyLabel: 'Apply Now',
+      unavailableMessage:
+        'We couldn’t load this role right now. Please try again in a moment.',
+    },
+    applyForm: {
+      titleTemplate: 'Apply as {role} Now',
+      breadcrumbLabel: 'Apply Now',
+      submitLabel: 'Apply Now',
+      submittingLabel: 'Submitting…',
+      uploadLabel: 'Upload your Resume',
+      successTitle: 'Application sent',
+      successMessage:
+        'Thanks for applying. Our team will review your application and get back to you by email.',
+      duplicateMessage:
+        'You have already applied for this role with this email address.',
+      rateLimitMessage:
+        'Too many attempts. Please wait a minute and try again.',
+      errorMessage:
+        'We could not submit your application. Please try again shortly.',
+      techSectionTitle: 'For technical roles (optional)',
+      fields: {
+        firstName: {
+          label: 'First Name',
+          placeholder: 'Anurag',
+        },
+        lastName: {
+          label: 'Last Name',
+          placeholder: 'Rai',
+        },
+        email: {
+          label: 'Email',
+          placeholder: 'you@example.com',
+        },
+        contactNumber: {
+          label: 'Phone',
+          placeholder: '+91 6000 831 966',
+        },
+        whatsappNumber: {
+          label: 'WhatsApp Number',
+          placeholder: '+91 6000 831 966',
+        },
+        currentLocation: {
+          label: 'Current Location',
+          placeholder: 'New Delhi, India',
+        },
+        linkedinId: {
+          label: 'LinkedIn Profile',
+          placeholder: 'https://linkedin.com/in/your-name',
+        },
+        qualification: {
+          label: 'Highest Qualification',
+          placeholder: 'B.Tech Computer Science',
+        },
+        experience: {
+          label: 'Years of Experience',
+          placeholder: 'Select experience',
+          options: {
+            fresher: 'Fresher',
+            '0-1': '0–1 years',
+            '1-3': '1–3 years',
+            '3-5': '3–5 years',
+          },
+        },
+        lastSalary: {
+          label: 'Last Salary',
+          placeholder: '8 LPA',
+        },
+        noticePeriod: {
+          label: 'Notice Period',
+          placeholder: '30 days',
+        },
+        comfortableFlexibleShifts: {
+          label: 'Comfortable with flexible shifts?',
+          placeholder: 'Select an option',
+          options: {
+            yes: 'Yes',
+            no: 'No',
+          },
+        },
+        hearAboutUs: {
+          label: 'How did you hear about us?',
+          placeholder: 'Select an option',
+          options: {
+            linkedin_post: 'LinkedIn post',
+            linkedin_company: 'LinkedIn company page',
+            job_portal: 'Job portal',
+            whatsapp_telegram: 'WhatsApp / Telegram',
+            company_website: 'Company website',
+            other: 'Other',
+          },
+        },
+        referredBy: {
+          label: 'Referred By (optional)',
+          placeholder: 'Name of the person who referred you',
+        },
+        githubId: {
+          label: 'GitHub Profile',
+          placeholder: 'https://github.com/your-name',
+        },
+        portfolioLink: {
+          label: 'Portfolio',
+          placeholder: 'https://your-portfolio.com',
+        },
+        technologiesKnown: {
+          label: 'Technologies You Know',
+          placeholder: 'React, TypeScript, Node.js',
+        },
+        hardestProblem: {
+          label: 'Hardest Problem You Have Solved',
+          placeholder: 'Tell us about it',
+        },
+        whyGoodFit: {
+          label: 'Why should we hire you',
+          placeholder: 'Tell us why you are a good fit',
+        },
+        whyJoinUs: {
+          label: 'Why do you want to join UpSpace Labs?',
+          placeholder: 'What excites you about this role',
+        },
+      },
+    },
   },
   'api::blog-page.blog-page': {
     breadcrumbLabel: 'Blog',
@@ -556,51 +690,12 @@ const SEEDS = {
       },
     ],
   },
-  // Collection type: the first open role; the others are created with it.
-  'api::job.job': {
-    title: 'Frontend Engineer',
-    slug: 'frontend-engineer',
-    team: 'Engineering',
-    location: 'Delhi',
-    order: 1,
-  },
 } as const;
 
 type SeededUid = keyof typeof SEEDS;
 
 /** More entries for collection types, created together with the first one. */
 const EXTRA_ENTRIES: Partial<Record<SeededUid, object[]>> = {
-  // The other open roles, created together with the first.
-  'api::job.job': [
-    {
-      title: 'Backend Engineer',
-      slug: 'backend-engineer',
-      team: 'Engineering',
-      location: 'Delhi',
-      order: 2,
-    },
-    {
-      title: 'UI/UX Designer',
-      slug: 'ui-ux-designer',
-      team: 'Design',
-      location: 'Delhi',
-      order: 3,
-    },
-    {
-      title: 'QA Engineer',
-      slug: 'qa-engineer',
-      team: 'Engineering',
-      location: 'Delhi',
-      order: 4,
-    },
-    {
-      title: 'Business Development',
-      slug: 'business-development',
-      team: 'Sales',
-      location: 'Delhi',
-      order: 5,
-    },
-  ],
   // More policy pages, created together with the Terms of Service.
   'api::legal-page.legal-page': [
     {
@@ -735,7 +830,6 @@ const EXTRA_ENTRIES: Partial<Record<SeededUid, object[]>> = {
 const COLLECTION_TYPES: SeededUid[] = [
   'api::blog-post.blog-post',
   'api::legal-page.legal-page',
-  'api::job.job',
 ];
 
 /** Public website content — readable without an API token. */
@@ -745,18 +839,24 @@ const PUBLIC_READ_ACTIONS = (Object.keys(SEEDS) as SeededUid[]).flatMap(uid =>
     : [`${uid}.find`]
 );
 
+/** The `data` a document `create()` accepts (from Strapi's generated types). */
+type SeedData = NonNullable<
+  Parameters<ReturnType<Core.Strapi['documents']>['create']>[0]
+>['data'];
+
 async function seedSingleTypes(strapi: Core.Strapi) {
   for (const uid of Object.keys(SEEDS) as SeededUid[]) {
     const existing = await strapi.documents(uid).findFirst();
     if (existing) continue;
 
-    // Seed shapes mirror the schemas; the generated types are not available
-    // until `strapi ts:generate-types` has been run.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await strapi.documents(uid).create({ data: SEEDS[uid] as any });
+    // The seeds are read-only (`as const`) object literals mirroring the schemas
+    // (cms/src/api, cms/src/components); Strapi's generated types expect its
+    // own mutable input shape, so they are cast to it.
+    await strapi
+      .documents(uid)
+      .create({ data: SEEDS[uid] as unknown as SeedData });
     for (const entry of EXTRA_ENTRIES[uid] ?? []) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await strapi.documents(uid).create({ data: entry as any });
+      await strapi.documents(uid).create({ data: entry as SeedData });
     }
     strapi.log.info(`[seed] created initial ${uid}`);
   }

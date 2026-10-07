@@ -823,35 +823,16 @@ describe('mapCareerPageContent', () => {
     );
   });
 
-  it('lists Strapi jobs (title and slug required) under the heading', () => {
+  it('takes the open-roles heading from Strapi and keeps the built-in roles as fallback', () => {
     const fallback = careerPageFallback.openRoles;
-    const roles = mapOpenRoles(
-      { title: 'We are hiring', description: '' },
-      [
-        {
-          title: 'Data Engineer',
-          slug: 'data-engineer',
-          team: 'Engineering',
-          location: '',
-        },
-        { title: 'No slug', slug: '' },
-      ],
-      fallback
-    );
-    expect(roles).toEqual({
+    expect(
+      mapOpenRoles({ title: 'We are hiring', description: '' }, fallback)
+    ).toEqual({
       title: 'We are hiring',
       description: fallback.description,
-      jobs: [
-        {
-          title: 'Data Engineer',
-          slug: 'data-engineer',
-          team: 'Engineering',
-          location: null,
-        },
-      ],
+      jobs: fallback.jobs,
     });
-    expect(mapOpenRoles(null, null, fallback)).toEqual(fallback);
-    expect(mapOpenRoles(null, [], fallback).jobs).toEqual(fallback.jobs);
+    expect(mapOpenRoles(null, fallback)).toEqual(fallback);
   });
 
   it('splits "How we work" paragraphs and keeps the bundled image without an upload', () => {

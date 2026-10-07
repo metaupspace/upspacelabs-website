@@ -4,7 +4,7 @@ import { logStrapiFallback, strapiFetch } from '@/lib/strapi/client';
 import {
   mapContactPageContent,
   type RawContactPage,
-} from '@/lib/strapi/contact-mappers';
+} from '@/lib/strapi/mappers';
 import { contactPageFallback } from './contact-fallback';
 
 const CONTACT_QUERY = 'populate[infoItems]=true&populate[form]=true';

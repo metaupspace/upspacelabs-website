@@ -6,3 +6,4 @@ export * from './about';
 export * from './contact';
 export * from './legal';
 export * from './career';
+export * from './jobs';

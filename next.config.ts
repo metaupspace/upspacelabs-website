@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextConfig } from 'next';
 
 const config: NextConfig = {
@@ -57,32 +56,8 @@ const config: NextConfig = {
     ];
   },
 
-  // Environment variables exposed to browser
-  env: {
-    NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME || 'Enterprise App',
-  },
-
   // Typed routes (moved from experimental in Next.js 16)
   typedRoutes: true,
-
-  // Turbopack config — empty object silences the webpack-config conflict warning
-  turbopack: {},
-
-  // Webpack configuration (used only when --webpack flag is passed)
-  webpack: (config: any, { isServer }: { isServer: boolean }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-      };
-    }
-    return config;
-  },
-
-  // Experimental features
-  experimental: {},
 
   // Disable x-powered-by header
   poweredByHeader: false,

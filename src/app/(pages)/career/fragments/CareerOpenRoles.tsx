@@ -1,16 +1,23 @@
+'use client';
+
 import { ListingRows } from '@metaupspace/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { SectionHeading } from '@/components/shared/SectionHeading';
+import { useOpenRoles } from '@/hooks/useOpenRoles';
 import type { OpenRolesContent } from '@/lib/types';
 
 /**
  * "Open roles at UpSpace Labs": a centred heading over the design system's
  * ListingRows (sized at ~0.85 of its defaults, as designed) — one grey row per job (position, team, location, an
- * up-right arrow), each linking to the role's page. `open-roles` is the
+ * up-right arrow), each linking to the role's page. The roles come from the
+ * Job Portal API through `useOpenRoles`. `open-roles` is the
  * target of the hero's "See Open Roles" button.
  */
 export function CareerOpenRoles({ content }: { content: OpenRolesContent }) {
+  // Jobs from the Job Portal API (prefetched on the server), built-in ones while it is down.
+  const { roles } = useOpenRoles(content.jobs);
+
   return (
     <section
       id="open-roles"
@@ -32,7 +39,7 @@ export function CareerOpenRoles({ content }: { content: OpenRolesContent }) {
       <InnerGuideContent contentClassName="px-6 pb-20 md:pb-24">
         <ListingRows
           aria-label="Open positions"
-          items={content.jobs.map(job => ({
+          items={roles.map(job => ({
             id: job.slug,
             title: job.title,
             fields: { team: job.team ?? '', location: job.location ?? '' },
@@ -56,6 +63,7 @@ export function CareerOpenRoles({ content }: { content: OpenRolesContent }) {
             },
           ]}
           linkComponent={AppLink}
+          emptyMessage="No open roles right now — write to us anyway at hello@upspacelabs.com."
           // The design runs at ~0.85 of the block's defaults.
           rowHeight="102px"
           gap="12px"

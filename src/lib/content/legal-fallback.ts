@@ -1,4 +1,4 @@
-import type { RawLegalPage } from '@/lib/strapi/legal-mappers';
+import type { RawLegalPage } from '@/lib/strapi/mappers';
 
 /** Built-in legal pages, in the same shape Strapi returns: shown when Strapi is unreachable. */
 export const legalPageFallbacks: RawLegalPage[] = [

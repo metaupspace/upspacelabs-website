@@ -45,10 +45,11 @@ export interface JobListing {
   location: string | null;
 }
 
-/** "Open roles at UpSpace Labs": a heading over the list of jobs. */
+/** "Open roles at UpSpace Labs": a heading (Strapi) over the jobs (Job Portal API). */
 export interface OpenRolesContent {
   title: string;
   description: string;
+  /** Built-in roles, shown while the Job Portal API is unreachable. */
   jobs: JobListing[];
 }
 
@@ -63,6 +64,49 @@ export interface HowWeWorkContent {
   image: ImageAsset;
 }
 
+/** Fixed wording of a single role's page, /career/<job code> (the job comes from the Job Portal API). */
+export interface JobDetailLabels {
+  aboutTitle: string;
+  requirementsTitle: string;
+  locationLabel: string;
+  employmentTypeLabel: string;
+  departmentLabel: string;
+  levelLabel: string;
+  skillsLabel: string;
+  experienceLabel: string;
+  educationLabel: string;
+  certificationsLabel: string;
+  viewMoreLabel: string;
+  viewLessLabel: string;
+  applyLabel: string;
+  unavailableMessage: string;
+}
+
+/** Label, placeholder and (for dropdowns) option names of one apply-form field. */
+export interface ApplyFieldCopy {
+  label: string;
+  placeholder: string;
+  /** Dropdown option names by value. */
+  options?: Record<string, string>;
+}
+
+/** Wording of /career/<job>/apply (the form itself follows the Job Portal API). */
+export interface ApplyFormLabels {
+  titleTemplate: string;
+  breadcrumbLabel: string;
+  submitLabel: string;
+  submittingLabel: string;
+  uploadLabel: string;
+  successTitle: string;
+  successMessage: string;
+  duplicateMessage: string;
+  rateLimitMessage: string;
+  errorMessage: string;
+  techSectionTitle: string;
+  /** By field name (see `ApplyFormValues`). */
+  fields: Record<string, ApplyFieldCopy>;
+}
+
 /** Everything the /career page renders, from Strapi's Career Page single type. */
 export interface CareerPageContent {
   hero: CareerHeroContent;
@@ -73,4 +117,8 @@ export interface CareerPageContent {
   howWeWork: HowWeWorkContent;
   /** Heading over the office map cards (the cards themselves come from the About page). */
   officesHeading: SectionHeadingContent;
+  /** Labels of the single-role pages. */
+  jobDetail: JobDetailLabels;
+  /** Wording of the apply pages. */
+  applyForm: ApplyFormLabels;
 }

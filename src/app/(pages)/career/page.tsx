@@ -1,7 +1,13 @@
 import type { Metadata } from 'next';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import PageFrame from '@/components/layout/PageFrame';
 import { CardCarouselSection } from '@/components/sections/CardCarouselSection';
 import { OfficesSection } from '@/components/sections/OfficesSection';
+import { jobsQueryOptions } from '@/hooks/useJobs';
 import { getAboutPageContent } from '@/lib/content/about';
 import { getCareerPageContent } from '@/lib/content/career';
 import { CareerFrame } from './fragments/CareerFrame';
@@ -23,6 +29,11 @@ export default async function CareerPage() {
     about,
   ] = await Promise.all([getCareerPageContent(), getAboutPageContent()]);
 
+  // Open roles from the Job Portal API, fetched here so they are in the HTML;
+  // the browser's query cache picks them up (a failure just leaves it empty).
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(jobsQueryOptions());
+
   return (
     <PageFrame showGuides={false}>
       <CareerFrame>
@@ -31,7 +42,9 @@ export default async function CareerPage() {
       </CareerFrame>
       {/* Outside the inner card: its lines end above this section. */}
       <CareerWhyJoin content={whyJoin} />
-      <CareerOpenRoles content={openRoles} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <CareerOpenRoles content={openRoles} />
+      </HydrationBoundary>
       <CareerHowWeWork content={howWeWork} />
       <OfficesSection
         content={{ ...about.offices, ...officesHeading }}
