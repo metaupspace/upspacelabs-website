@@ -4,23 +4,19 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@metaupspace/design-tokens': file:./vendor/metaupspace/metaupspace-design-tokens.tgz
-  '@metaupspace/icons': file:./vendor/metaupspace/metaupspace-icons.tgz
-
 importers:
 
   .:
     dependencies:
       '@metaupspace/design-tokens':
-        specifier: file:vendor/metaupspace/metaupspace-design-tokens.tgz
-        version: file:vendor/metaupspace/metaupspace-design-tokens.tgz(react@19.2.3)
+        specifier: 0.1.1
+        version: 0.1.1(react@19.2.3)
       '@metaupspace/icons':
-        specifier: file:vendor/metaupspace/metaupspace-icons.tgz
-        version: file:vendor/metaupspace/metaupspace-icons.tgz(react@19.2.3)
+        specifier: 0.1.4
+        version: 0.1.4(react@19.2.3)
       '@metaupspace/ui':
-        specifier: file:vendor/metaupspace/metaupspace-ui.tgz
-        version: file:vendor/metaupspace/metaupspace-ui.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 0.3.0
+        version: 0.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@tanstack/react-query':
         specifier: ^5.104.1
         version: 5.104.1(react@19.2.3)
@@ -562,26 +558,20 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@metaupspace/design-tokens@file:vendor/metaupspace/metaupspace-design-tokens.tgz':
-    resolution: {integrity: sha512-wFqWvQ+nXW9z9Zzf6sKMdiBmRavBgdDVVbGvdIHOkJjvmpcNzgYBQ9UfKvzT4k2YzbGpEkztOAgkYMPIaAoWgw==, tarball: file:vendor/metaupspace/metaupspace-design-tokens.tgz}
-    version: 0.1.1
-    engines: {node: '>=18'}
-    peerDependencies:
-      react: '>=18'
-    peerDependenciesMeta:
-      react:
-        optional: true
-
-  '@metaupspace/icons@file:vendor/metaupspace/metaupspace-icons.tgz':
-    resolution: {integrity: sha512-GZpw3XrD+YrJVwitkA30ebRjOJlFrHZfhtiPyL5pf+NX3E94AcVW4y6V3dsQDwDCy262ZNxbx93LKv3JRTT0mg==, tarball: file:vendor/metaupspace/metaupspace-icons.tgz}
-    version: 0.1.4
+  '@metaupspace/design-tokens@0.1.1':
+    resolution: {integrity: sha512-uKhEQIg37O6fakRdQO4n+mQgvNrc2b5GwRCP03qEH0w5oo3OpkEMND0CEfbuMkzUJncvqX1zmKRtkLnk1LTD8g==, tarball: https://npm.pkg.github.com/download/@metaupspace/design-tokens/0.1.1/828ccaf32db25583e6316f6f46cb2b5977b8e5a0}
     engines: {node: '>=18'}
     peerDependencies:
       react: '>=18'
 
-  '@metaupspace/ui@file:vendor/metaupspace/metaupspace-ui.tgz':
-    resolution: {integrity: sha512-xSbfT3R+j0q2lSwM9o92bYvIF0yfESBjPT8sog4kra2FUw8SJUfQR5NgZ8Xhr6Mc8VBjaPMf6GdxBn/O4dz3ng==, tarball: file:vendor/metaupspace/metaupspace-ui.tgz}
-    version: 0.2.0
+  '@metaupspace/icons@0.1.4':
+    resolution: {integrity: sha512-GZpw3XrD+YrJVwitkA30ebRjOJlFrHZfhtiPyL5pf+NX3E94AcVW4y6V3dsQDwDCy262ZNxbx93LKv3JRTT0mg==, tarball: https://npm.pkg.github.com/download/@metaupspace/icons/0.1.4/16047742c814c79dd918bb261e0aaffb4d876fa6}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=18'
+
+  '@metaupspace/ui@0.3.0':
+    resolution: {integrity: sha512-pU3vpvcNHZAKpwe/xruKVhRklGSkbtsPW0rsvLs8W7Z1DLBhEu0+o/uFWyOPyfRUc5ixan1wn0v8qf+AEb9qgg==, tarball: https://npm.pkg.github.com/download/@metaupspace/ui/0.3.0/5661c349034427d0d507ed9afd11c9debd233314}
     engines: {node: '>=22'}
     peerDependencies:
       react: '>=18'
@@ -4713,18 +4703,18 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@metaupspace/design-tokens@file:vendor/metaupspace/metaupspace-design-tokens.tgz(react@19.2.3)':
-    optionalDependencies:
-      react: 19.2.3
-
-  '@metaupspace/icons@file:vendor/metaupspace/metaupspace-icons.tgz(react@19.2.3)':
+  '@metaupspace/design-tokens@0.1.1(react@19.2.3)':
     dependencies:
       react: 19.2.3
 
-  '@metaupspace/ui@file:vendor/metaupspace/metaupspace-ui.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@metaupspace/icons@0.1.4(react@19.2.3)':
     dependencies:
-      '@metaupspace/design-tokens': file:vendor/metaupspace/metaupspace-design-tokens.tgz(react@19.2.3)
-      '@metaupspace/icons': file:vendor/metaupspace/metaupspace-icons.tgz(react@19.2.3)
+      react: 19.2.3
+
+  '@metaupspace/ui@0.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@metaupspace/design-tokens': 0.1.1(react@19.2.3)
+      '@metaupspace/icons': 0.1.4(react@19.2.3)
       '@radix-ui/react-dropdown-menu': 2.1.25(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-select': 2.3.8(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-slider': 1.5.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
