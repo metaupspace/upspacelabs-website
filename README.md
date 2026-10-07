@@ -17,19 +17,21 @@ Without Strapi running every page still renders, using its built-in copy.
 
 ## Scripts
 
-| Script                         | What it does                                                                             |
-| ------------------------------ | ---------------------------------------------------------------------------------------- |
-| `pnpm dev` / `build` / `start` | Next.js dev server, production build, production server                                  |
-| `pnpm lint` / `lint:fix`       | ESLint                                                                                   |
-| `pnpm format` / `format:check` | Prettier (with the Tailwind class sorter)                                                |
-| `pnpm type-check`              | TypeScript, no output                                                                    |
-| `pnpm test` / `test:watch`     | Vitest — `tests/unit`, `tests/integration`                                               |
-| `pnpm ds:pack`                 | Rebuild the design system (`../UpspaceLabs-Design-System`) into `vendor/` and install it |
-| `pnpm clean`                   | Remove `.next` and build caches                                                          |
+| Script                         | What it does                                                    |
+| ------------------------------ | --------------------------------------------------------------- |
+| `pnpm dev` / `build` / `start` | Next.js dev server, production build, production server         |
+| `pnpm lint` / `lint:fix`       | ESLint                                                          |
+| `pnpm format` / `format:check` | Prettier (with the Tailwind class sorter)                       |
+| `pnpm type-check`              | TypeScript, no output                                           |
+| `pnpm test` / `test:watch`     | Vitest — `tests/unit`, `tests/integration`                      |
+| `pnpm ds:pack`                 | Local design-system tarballs into `vendor/` (see Design system) |
+| `pnpm clean`                   | Remove `.next` and build caches                                 |
 
-The design system is consumed as local tarballs (`vendor/metaupspace/*.tgz`) until it is
-published; after `pnpm ds:pack`, restart the dev server (and clear `.next` if new
-Tailwind classes or animations from the preset don't show up).
+`@metaupspace/ui` (+ `icons`, `design-tokens`) is installed from GitHub Packages at pinned versions;
+`.npmrc` reads the token from `NODE_AUTH_TOKEN` (needs `read:packages`). To try unreleased design-system
+changes, run `pnpm ds:pack` (local tarballs in `vendor/`), restart the dev server (clear `.next` if new
+Tailwind classes or animations from the preset don't show up), and revert `package.json` /
+`pnpm-workspace.yaml` before committing.
 
 ## Project structure
 
