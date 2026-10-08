@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main, develop]
 
+# Token for installing @metaupspace/* from GitHub Packages (read by .npmrc).
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
 jobs:
   quality:
     name: Code Quality & Build

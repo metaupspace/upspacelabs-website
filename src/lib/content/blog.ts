@@ -76,6 +76,7 @@ const examplePost = (
 ): BlogPost => ({
   slug,
   title,
+  breadcrumbLabel: null,
   summary: excerpt,
   excerpt,
   coverImage,
@@ -91,6 +92,7 @@ export const blogPostFallbacks: BlogPost[] = [
   {
     slug: 'northfield-logistics',
     title: 'How Northfield Logistics cut HR admin by 60% with UpSentrix People',
+    breadcrumbLabel: 'Read Northfield’s Story',
     summary:
       '[Northfield Logistics](#) runs warehouses and delivery fleets across 12 cities in India. As its workforce passed 1,200 people, the company moved from spreadsheets to UpSentrix People to manage hiring, attendance, leave, and payroll in one place.',
     excerpt:
@@ -180,6 +182,7 @@ export const blogPostFallbacks: BlogPost[] = [
 
 /** Defaults for a post that exists only in Strapi and leaves fields empty. */
 const EMPTY_POST: Omit<BlogPost, 'slug' | 'title'> = {
+  breadcrumbLabel: null,
   summary: '',
   excerpt: '',
   coverImage: DEFAULT_COVER,

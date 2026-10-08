@@ -67,7 +67,7 @@ export interface Milestone {
 export interface ProgressContent {
   title: string;
   description: string;
-  /** Corner hint; `null` hides it. */
+  /** Label of the corner "Skip" button (jumps past the timeline); `null` hides it. */
   hint: string | null;
   milestones: Milestone[];
 }

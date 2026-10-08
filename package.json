@@ -19,9 +19,9 @@
     "ds:pack": "bash scripts/pack-design-system.sh"
   },
   "dependencies": {
-    "@metaupspace/design-tokens": "file:vendor/metaupspace/metaupspace-design-tokens.tgz",
-    "@metaupspace/icons": "file:vendor/metaupspace/metaupspace-icons.tgz",
-    "@metaupspace/ui": "file:vendor/metaupspace/metaupspace-ui.tgz",
+    "@metaupspace/design-tokens": "0.1.1",
+    "@metaupspace/icons": "0.1.4",
+    "@metaupspace/ui": "0.3.0",
     "@tanstack/react-query": "^5.104.1",
     "clsx": "^2.1.1",
     "motion": "^12.40.0",

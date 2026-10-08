@@ -7,6 +7,7 @@ roles and applications come from the Job Portal backend.
 ## Getting started
 
 ```bash
+export NODE_AUTH_TOKEN=<GitHub token with read:packages>   # @metaupspace/* come from GitHub Packages
 pnpm install
 cp .env.example .env.local     # then fill in (see the comments inside)
 (cd cms && docker compose up -d)   # Strapi + Postgres on :1337 — see cms/README.md
@@ -17,19 +18,25 @@ Without Strapi running every page still renders, using its built-in copy.
 
 ## Scripts
 
-| Script                         | What it does                                                                             |
-| ------------------------------ | ---------------------------------------------------------------------------------------- |
-| `pnpm dev` / `build` / `start` | Next.js dev server, production build, production server                                  |
-| `pnpm lint` / `lint:fix`       | ESLint                                                                                   |
-| `pnpm format` / `format:check` | Prettier (with the Tailwind class sorter)                                                |
-| `pnpm type-check`              | TypeScript, no output                                                                    |
-| `pnpm test` / `test:watch`     | Vitest — `tests/unit`, `tests/integration`                                               |
-| `pnpm ds:pack`                 | Rebuild the design system (`../UpspaceLabs-Design-System`) into `vendor/` and install it |
-| `pnpm clean`                   | Remove `.next` and build caches                                                          |
+| Script                         | What it does                                                                                             |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `pnpm dev` / `build` / `start` | Next.js dev server, production build, production server                                                  |
+| `pnpm lint` / `lint:fix`       | ESLint                                                                                                   |
+| `pnpm format` / `format:check` | Prettier (with the Tailwind class sorter)                                                                |
+| `pnpm type-check`              | TypeScript, no output                                                                                    |
+| `pnpm test` / `test:watch`     | Vitest — `tests/unit`, `tests/integration`                                                               |
+| `pnpm ds:pack`                 | Try unreleased design-system changes: build `../UpspaceLabs-Design-System` into `vendor/` and install it |
+| `pnpm clean`                   | Remove `.next` and build caches                                                                          |
 
-The design system is consumed as local tarballs (`vendor/metaupspace/*.tgz`) until it is
-published; after `pnpm ds:pack`, restart the dev server (and clear `.next` if new
-Tailwind classes or animations from the preset don't show up).
+## Design system
+
+`@metaupspace/ui` (with `@metaupspace/icons` and `@metaupspace/design-tokens`) is installed from GitHub
+Packages at pinned versions. `.npmrc` routes the `@metaupspace` scope there and reads the token from
+`NODE_AUTH_TOKEN`, so export a token with `read:packages` before `pnpm install`. To try unreleased
+design-system changes locally, run `pnpm ds:pack` (builds `../UpspaceLabs-Design-System` into `vendor/`
+and installs the tarballs) and revert `package.json` / `pnpm-workspace.yaml` before committing. After
+switching versions, restart the dev server (and clear `.next` if new Tailwind classes or animations
+from the preset don't show up).
 
 ## Project structure
 
@@ -81,7 +88,8 @@ client cache, so jobs are in the HTML and stay fresh in the browser.
 ## Conventions
 
 - **Design system first.** Reusable UI belongs in `@metaupspace/ui`; add or extend it
-  there (with tests, story, docs and a changeset) and `pnpm ds:pack`. Website-only pieces
+  there (with tests, story, docs and a changeset), try it here with `pnpm ds:pack`, and bump
+  the pinned version once it is published. Website-only pieces
   live in `src/components`.
 - **All copy and images from Strapi**, each with a built-in fallback in `src/lib/content`.
 - **Tailwind:** write class names out in full (no string building — Tailwind can't see

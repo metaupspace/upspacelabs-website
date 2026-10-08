@@ -49,8 +49,6 @@ export interface JobListing {
 export interface OpenRolesContent {
   title: string;
   description: string;
-  /** Built-in roles, shown while the Job Portal API is unreachable. */
-  jobs: JobListing[];
 }
 
 /** "Build it, ship it, learn from it": text beside an illustration. */

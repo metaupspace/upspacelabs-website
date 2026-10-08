@@ -8,7 +8,7 @@ import type { FoundedContent } from '@/lib/types';
  * the globe is larger than its column and the column crops it (FeatureSplit's
  * media box hides overflow), so it bleeds off the right and bottom; sizes are
  * in container units so the crop holds at every width. Phones: the text, then
- * the whole globe.
+ * the whole globe. Desktop type from Figma: 32/38 Bold title, 12/20 text.
  */
 export function AboutFounded({ content }: { content: FoundedContent }) {
   const arcs: GlobeArc[] = content.connections.map((place, index) => ({
@@ -19,28 +19,31 @@ export function AboutFounded({ content }: { content: FoundedContent }) {
   }));
 
   return (
-    <InnerGuideContent contentClassName="px-6 pt-20 md:pt-24 md:pr-0 md:pl-[55px]">
+    <InnerGuideContent contentClassName="px-6 pt-20 md:pt-[60px] md:pr-0 md:pl-10">
       <FeatureSplit
         size="xl"
         mobileOrder="content-first"
         lineBreaks="never"
         title={content.title}
         description={content.paragraphs.map((paragraph, index) => (
-          <span key={index} className="block [&+&]:mt-4 md:[&+&]:mt-[28px]">
+          <span key={index} className="block [&+&]:mt-4 md:[&+&]:mt-[20px]">
             {paragraph}
           </span>
         ))}
-        mediaWidth="47%"
+        // Figma desktop: the 423px text 69px from a 578×484 globe box, the text
+        // 40px inside the guide and centred on the box.
+        mediaWidth="578px"
         mediaMaxWidth="none"
-        mediaAspectRatio="937 / 823"
-        contentMaxWidth="38rem"
+        mediaAspectRatio="578 / 484"
+        contentMaxWidth="423px"
+        columnGap="69px"
         classNames={{
           // Phones: centred text.
           content: 'max-md:items-center max-md:text-center',
           title:
-            'text-[26px] font-bold tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.2] md:text-[48px]',
+            'text-[26px] font-bold tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.2] md:text-[32px] md:tracking-[-0.2px] md:[line-height:38px]',
           description:
-            'mt-[22px] text-[13.25px] text-neutral-500 [line-height:17.5px] md:mt-[13px] md:text-[17px] md:[line-height:28px] dark:text-neutral-400',
+            'mt-[22px] text-[13.25px] text-neutral-500 [line-height:17.5px] md:mt-[12px] md:text-[12px] md:[line-height:20px] dark:text-neutral-400',
           // Phones: a wide, short box bleeding to the screen's right edge.
           media:
             '[container-type:inline-size] max-md:-mr-6 max-md:w-[calc(100%+24px)] max-md:aspect-[366/261]!',

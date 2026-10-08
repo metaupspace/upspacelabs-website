@@ -10,9 +10,20 @@ interface HeroSectionProps {
   content: HeroContent;
   /** Per-page tweaks on top of the home page's look. */
   classNames?: {
+    /** The section — e.g. its top padding. */
+    root?: string;
+    headline?: string;
     subtitle?: string;
+    /** Both buttons. */
+    actions?: string;
+    /** The second button only, after `actions`. */
+    secondaryAction?: string;
+    /** The row holding the buttons — e.g. its gap below the description. */
+    actionsRow?: string;
     /** Wrapper of the image — e.g. its gap below the CTAs. */
     media?: string;
+    /** Box around the image that crops it — e.g. a fixed aspect ratio. */
+    frame?: string;
     /** The image itself — e.g. rounded corners for a photo. */
     image?: string;
   };
@@ -27,10 +38,14 @@ export function HeroSection({ content, classNames }: HeroSectionProps) {
 
   return (
     <Hero
-      className="pt-32 md:pt-[10.75rem]"
+      className={cn('pt-32 md:pt-[10.75rem]', classNames?.root)}
       classNames={{
         content: 'px-6',
+        headline: classNames?.headline,
         subtitle: classNames?.subtitle,
+        actions: classNames?.actionsRow,
+        primaryAction: classNames?.actions,
+        secondaryAction: cn(classNames?.actions, classNames?.secondaryAction),
         media: cn('mt-[45px]', classNames?.media),
       }}
       headline={headline}
@@ -48,15 +63,17 @@ export function HeroSection({ content, classNames }: HeroSectionProps) {
       linkComponent={AppLink}
     >
       <InnerGuideContent>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          priority
-          sizes="(min-width: 768px) 87vw, 100vw"
-          className={cn('block h-auto w-full', classNames?.image)}
-        />
+        <div className={cn('overflow-hidden', classNames?.frame)}>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            priority
+            sizes="(min-width: 768px) 87vw, 100vw"
+            className={cn('block h-auto w-full', classNames?.image)}
+          />
+        </div>
       </InnerGuideContent>
     </Hero>
   );

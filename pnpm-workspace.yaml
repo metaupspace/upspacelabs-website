@@ -1,10 +1,3 @@
 allowBuilds:
   sharp: true
   unrs-resolver: true
-
-# Local design-system tarballs (built by `pnpm ds:pack`). @metaupspace/ui depends on
-# design-tokens/icons by version, so point those at the tarballs too. Remove these
-# once the packages are installed from GitHub Packages.
-overrides:
-  '@metaupspace/design-tokens': file:./vendor/metaupspace/metaupspace-design-tokens.tgz
-  '@metaupspace/icons': file:./vendor/metaupspace/metaupspace-icons.tgz

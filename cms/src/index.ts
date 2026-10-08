@@ -178,7 +178,10 @@ const SEEDS = {
           'Working with UpSpace Labs felt like adding a product team to our own. They listened closely, moved fast, and genuinely cared about getting it right for our people.',
         author: 'Priya Malhotra',
         role: 'Head of HR, Northfield Logistics',
-        action: { label: 'Read Northfield\u2019s Story', href: '/about-us' },
+        action: {
+          label: 'Read Northfield\u2019s Story',
+          href: '/blog/northfield-logistics',
+        },
       },
       {
         company: 'Brightpath Schools',
@@ -186,7 +189,10 @@ const SEEDS = {
           'Working with UpSpace Labs felt like adding a product team to our own. They listened closely, moved fast, and genuinely cared about getting it right for our people.',
         author: 'Arjun Mehta',
         role: 'Principal, Brightpath Schools',
-        action: { label: 'Read Brightpath\u2019s Story', href: '/about-us' },
+        action: {
+          label: 'Read Brightpath\u2019s Story',
+          href: '/blog/northfield-logistics',
+        },
       },
       {
         company: 'Meridian Health',
@@ -194,7 +200,10 @@ const SEEDS = {
           'Working with UpSpace Labs felt like adding a product team to our own. They listened closely, moved fast, and genuinely cared about getting it right for our people.',
         author: 'Sara Iyer',
         role: 'COO, Meridian Health',
-        action: { label: 'Read Meridian\u2019s Story', href: '/about-us' },
+        action: {
+          label: 'Read Meridian\u2019s Story',
+          href: '/blog/northfield-logistics',
+        },
       },
       {
         company: 'Kavya Retail',
@@ -202,7 +211,10 @@ const SEEDS = {
           'Working with UpSpace Labs felt like adding a product team to our own. They listened closely, moved fast, and genuinely cared about getting it right for our people.',
         author: 'Rohan Kapoor',
         role: 'Founder, Kavya Retail',
-        action: { label: 'Read Kavya\u2019s Story', href: '/about-us' },
+        action: {
+          label: 'Read Kavya\u2019s Story',
+          href: '/blog/northfield-logistics',
+        },
       },
     ],
   },
@@ -226,6 +238,13 @@ const SEEDS = {
         { label: 'Dubai', lat: 25.2, lng: 55.27, altitude: 0.06 },
         { label: 'New York', lat: 40.71, lng: -74.0, altitude: 0.08 },
         { label: 'Sydney', lat: -33.87, lng: 151.21, altitude: 0.1 },
+        { label: 'Mumbai', lat: 19.08, lng: 72.88, altitude: 0.04 },
+        { label: 'Bangkok', lat: 13.76, lng: 100.5, altitude: 0.05 },
+        { label: 'Jakarta', lat: -6.2, lng: 106.85, altitude: 0.07 },
+        { label: 'Hong Kong', lat: 22.32, lng: 114.17, altitude: 0.06 },
+        { label: 'Shanghai', lat: 31.23, lng: 121.47, altitude: 0.07 },
+        { label: 'Seoul', lat: 37.57, lng: 126.98, altitude: 0.08 },
+        { label: 'Tokyo', lat: 35.68, lng: 139.69, altitude: 0.09 },
       ],
     },
     team: {
@@ -254,7 +273,7 @@ const SEEDS = {
       title: 'Our path of progress',
       description:
         'Founded in Delhi in 2026. Here is what we are launching, in order.',
-      hint: '[Scroll to Explore]',
+      hint: 'Skip',
       milestones: [
         {
           date: '2026',
@@ -571,6 +590,7 @@ const SEEDS = {
   'api::blog-post.blog-post': {
     title: 'How Northfield Logistics cut HR admin by 60% with UpSentrix People',
     slug: 'northfield-logistics',
+    breadcrumbLabel: 'Read Northfield’s Story',
     excerpt:
       'How a 12-city logistics company moved 1,200 people off spreadsheets and onto UpSentrix People.',
     summary:
