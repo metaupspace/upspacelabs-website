@@ -1,12 +1,12 @@
 import { Hero, type HeroClassNames } from '@metaupspace/ui';
 import type { SectionHeadingContent } from '@/lib/types';
 
-/** The 38px display-cut heading ("Built for the Demands…", "Take a look at…") with a 16px #737373 description. */
+/** The display-cut heading ("Built for the Demands…"): 32/38 Bold title, 14/20 Medium #737373 description on desktop (Figma). */
 export const DISPLAY_HEADING_CLASSNAMES = {
   headline:
-    'text-[1.875rem] tracking-normal [font-variation-settings:normal] md:text-[2.375rem]',
+    'text-[1.875rem] tracking-normal [font-variation-settings:normal] md:text-[2rem] md:font-bold md:tracking-[-0.2px] md:[line-height:38px]',
   subtitle:
-    'mt-[10px] text-[1rem] text-neutral-500 [line-height:1.4] dark:text-neutral-400',
+    'mt-[10px] text-[1rem] text-neutral-500 [line-height:1.4] md:mt-[8px] md:text-[14px] md:font-medium md:tracking-[-0.02em] md:[line-height:20px] dark:text-neutral-400',
 } satisfies HeroClassNames;
 
 interface SectionHeadingProps {

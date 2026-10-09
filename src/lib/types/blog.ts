@@ -45,6 +45,8 @@ export interface BlogPost {
   slug: string;
   /** Page title (`h1`). */
   title: string;
+  /** Last breadcrumb item, e.g. "Read Northfield’s Story"; `null` uses the title. */
+  breadcrumbLabel: string | null;
   /** Intro under the title. `[label](url)` becomes an inline link. */
   summary: string;
   /** Short line for the post's card in listings. */

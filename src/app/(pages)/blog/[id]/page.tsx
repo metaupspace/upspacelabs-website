@@ -32,7 +32,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <BlogHero post={post} />
       <BlogLogos post={post} />
       <BlogCaseStudy post={post} />
-      <CardCarouselSection content={post.moreStories} />
+      <CardCarouselSection content={post.moreStories} variant="figma" />
     </PageFrame>
   );
 }

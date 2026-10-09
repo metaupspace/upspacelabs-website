@@ -8,7 +8,7 @@ import type { ApiJob, JobDetailLabels } from '@/lib/types';
 const FOLDED_HEIGHT = 481;
 
 const BODY =
-  'text-[15px] text-neutral-500 [line-height:30px] md:text-base md:[line-height:37px] dark:text-neutral-400';
+  'text-[15px] text-neutral-500 [line-height:30px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:29px] dark:text-neutral-400';
 
 /**
  * "About the role" — the job's description (a paragraph per line) and its
@@ -54,7 +54,7 @@ export function JobDescription({
       >
         <h2
           id="about-role"
-          className="text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] dark:text-white"
+          className="text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:font-bold md:tracking-[-0.04em] dark:text-white"
         >
           {labels.aboutTitle}
         </h2>
@@ -66,7 +66,7 @@ export function JobDescription({
 
         {groups.length > 0 && (
           <>
-            <h2 className="mt-8 text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] dark:text-white">
+            <h2 className="mt-8 text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:font-bold md:tracking-[-0.04em] dark:text-white">
               {labels.requirementsTitle}
             </h2>
             <dl className={`mt-4 ${BODY}`}>
@@ -95,7 +95,7 @@ export function JobDescription({
           aria-expanded={open}
           aria-controls="job-description"
           onClick={() => setOpen(v => !v)}
-          className="mt-8 inline-flex items-center gap-2.5 text-[18px] font-medium text-black transition-colors hover:text-[#4F46E5] dark:text-white"
+          className="mt-8 inline-flex items-center gap-2.5 text-[18px] font-medium text-black transition-colors hover:text-[#4F46E5] md:text-[16px] md:[line-height:24px] md:tracking-[-0.02em] dark:text-white"
         >
           {open ? labels.viewLessLabel : labels.viewMoreLabel}
           <ChevronDown

@@ -34,18 +34,18 @@ export function CareerWhyJoin({ content }: { content: WhyJoinContent }) {
       >
         <div className="max-w-[30rem]">
           {eyebrow && (
-            <p className="text-[13.5px] [line-height:1.3] font-bold tracking-[0.02em] text-[#2563EB] uppercase">
+            <p className="text-[13.5px] [line-height:1.3] font-bold tracking-[0.02em] text-[#2563EB] uppercase md:text-[12px] md:[line-height:16px] md:tracking-normal">
               {eyebrow}
             </p>
           )}
           <h2
             id="why-join-title"
-            className="mt-2.5 text-[30px] [line-height:1.15] font-bold tracking-[-0.02em] text-black [font-variation-settings:normal] md:text-[39px] md:[line-height:1.1] md:whitespace-pre-line dark:text-white"
+            className="mt-2.5 text-[30px] [line-height:1.15] font-bold tracking-[-0.02em] text-black [font-variation-settings:normal] md:text-[32px] md:[line-height:38px] md:tracking-[-0.2px] md:whitespace-pre-line dark:text-white"
           >
             {title}
           </h2>
           {description && (
-            <p className="mt-[13px] text-[14px] [line-height:23px] text-neutral-500 dark:text-neutral-400">
+            <p className="mt-[13px] text-[14px] [line-height:23px] text-neutral-500 md:text-[12px] md:[line-height:20px] dark:text-neutral-400">
               {description}
             </p>
           )}
@@ -59,11 +59,11 @@ export function CareerWhyJoin({ content }: { content: WhyJoinContent }) {
               className="border-neutral-200 max-sm:border-b max-sm:px-5 max-sm:pt-7 max-sm:pb-7 max-sm:first:pt-0 max-sm:last:border-b-0 dark:border-neutral-800"
             >
               <Sparkle />
-              <h3 className="mt-[15px] max-w-[18rem] text-[19.5px] [line-height:1.2] font-bold tracking-[-0.01em] text-black [font-variation-settings:normal] dark:text-white">
+              <h3 className="mt-[15px] max-w-[18rem] text-[19.5px] [line-height:1.2] font-bold tracking-[-0.01em] text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:tracking-[-0.04em] dark:text-white">
                 {perk.title}
               </h3>
               {perk.description && (
-                <p className="mt-2.5 max-w-[18rem] pl-0.5 text-base [line-height:23px] text-neutral-500 dark:text-neutral-400">
+                <p className="mt-2.5 max-w-[18rem] pl-0.5 text-base [line-height:23px] text-neutral-500 md:text-[14px] md:[line-height:20px] md:tracking-[-0.02em] dark:text-neutral-400">
                   {perk.description}
                 </p>
               )}

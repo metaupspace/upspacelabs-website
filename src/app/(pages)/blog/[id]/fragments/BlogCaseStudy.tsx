@@ -2,13 +2,22 @@ import { CaseStudy, type CaseStudyBlock } from '@metaupspace/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { BlogBlock, BlogPost } from '@/lib/types';
 
-const toBlock = (block: BlogBlock, index: number): CaseStudyBlock => {
+const toBlock = (
+  block: BlogBlock,
+  index: number,
+  blocks: BlogBlock[]
+): CaseStudyBlock => {
   const id = `block-${index}`;
   switch (block.type) {
     case 'text':
       return {
         type: 'text',
         id,
+        // A section right after another one sits 29px below it — the same gap
+        // as after the pull quote (Figma), not the design system's 104px.
+        ...(blocks[index - 1]?.type === 'text'
+          ? { spacingBefore: '29px' }
+          : {}),
         heading: block.heading ?? undefined,
         paragraphs: block.groups,
       };
@@ -52,6 +61,18 @@ export function BlogCaseStudy({ post }: { post: BlogPost }) {
         // equals the quote's bleed, so the quote ends on the right guide.
         contentMaxWidth="none"
         blocks={post.body.map(toBlock)}
+        // Figma desktop: figures 32/38 SemiBold (-0.2px) over 14/20 labels;
+        // headings 16/24 Bold (-2%), text 14/24, the quote 20/33 Medium
+        // (-0.2px) with its 18/28 attribution (-4%, the name Bold, the role Medium).
+        classNames={{
+          sidebar:
+            'md:[&_dd]:text-[32px] md:[&_dd]:font-semibold md:[&_dd]:tracking-[-0.2px] md:[&_dd]:[line-height:38px] md:[&_dt]:text-[14px] md:[&_dt]:tracking-[-0.16px] md:[&_dt]:[line-height:20px]',
+          heading:
+            'md:text-[16px] md:font-bold md:tracking-[-0.02em] md:[line-height:24px]',
+          paragraph: 'md:text-[14px] md:[line-height:24px]',
+          quote:
+            'md:[&_blockquote]:text-[20px] md:[&_blockquote]:font-medium md:[&_blockquote]:tracking-[-0.2px] md:[&_blockquote]:[line-height:33px] md:[&_figcaption]:tracking-[-0.04em] md:[&_figcaption_span:last-child]:font-medium',
+        }}
       />
     </InnerGuideContent>
   );

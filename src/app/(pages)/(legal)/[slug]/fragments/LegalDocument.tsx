@@ -77,15 +77,15 @@ export function LegalDocument({ page }: { page: LegalPage }) {
   return (
     <article className="mx-auto w-full max-w-(--frame) px-(--gutter) pt-28 pb-20 md:pt-[1.625rem] md:pb-28">
       {/* Title stays pinned while the sections scroll past. It pins at the very
-          top, padded by the navbar's height (5.375rem): the navbar hides while
-          scrolling down, and the padding keeps sections from showing above
-          the title. The article's top padding is reduced by the same amount. */}
+          top, padded past the sticky navbar (which sits over the padding), so
+          sections never show above the title. The article's top padding is
+          reduced by the same amount. */}
       <header className="bg-background md:sticky md:top-0 md:z-10 md:h-[17.5rem] md:pt-[8.375rem]">
-        <h1 className="text-[2.25rem] leading-[1.15] font-semibold tracking-[-0.04em] text-neutral-950 md:text-6xl dark:text-white">
+        <h1 className="text-[2.25rem] leading-[1.15] font-semibold tracking-[-0.04em] text-neutral-950 md:text-[48px] md:leading-[58px] md:tracking-[-0.4px] dark:text-white">
           {page.title}
         </h1>
         {page.lastUpdated && (
-          <p className="mt-4 text-sm text-neutral-500 md:mt-5 md:text-base dark:text-neutral-400">
+          <p className="mt-4 text-sm text-neutral-500 md:mt-5 md:text-[14px] md:leading-6 md:font-medium dark:text-neutral-400">
             Last Updated on {formatDate(page.lastUpdated)}
           </p>
         )}
@@ -105,10 +105,13 @@ export function LegalDocument({ page }: { page: LegalPage }) {
                     href={`#${section.id}`}
                     onClick={() => setActive(section.id)}
                     aria-current={current ? 'location' : undefined}
-                    className={`block rounded-full px-4 py-1.5 text-sm whitespace-nowrap transition-colors md:rounded-none md:border-l-4 md:py-2 md:pl-[1.9rem] md:whitespace-normal ${
+                    // Desktop type from Figma: the current item 16/24 Medium, the rest
+                    // 14/20 in #525252, all -2%.
+                    className={`block rounded-full px-4 py-1.5 text-sm whitespace-nowrap transition-colors md:rounded-none md:border-l-4 md:py-2 md:pl-[1.9rem] md:leading-5 md:tracking-[-0.02em] md:whitespace-normal ${
                       current
-                        ? 'bg-neutral-100 font-medium text-neutral-950 md:border-indigo-500 md:bg-transparent dark:bg-neutral-800 dark:text-white'
-                        : 'text-neutral-500 hover:text-neutral-900 md:border-transparent dark:text-neutral-400 dark:hover:text-white'
+                        ? // Phones: a filled pill; from md up only the indigo line marks it (no fill in either theme).
+                          'bg-neutral-100 font-medium text-neutral-950 md:border-indigo-500 md:bg-transparent md:text-[16px] md:leading-6 dark:bg-neutral-800 dark:text-white md:dark:bg-transparent'
+                        : 'text-neutral-500 hover:text-neutral-900 md:border-transparent md:text-[#525252] dark:text-neutral-400 dark:hover:text-white md:dark:text-neutral-400'
                     }`}
                   >
                     {section.heading}
@@ -129,11 +132,11 @@ export function LegalDocument({ page }: { page: LegalPage }) {
             >
               <h2
                 id={`${section.id}-title`}
-                className="text-xl font-semibold tracking-[-0.01em] text-neutral-950 md:text-2xl dark:text-white"
+                className="text-xl font-semibold tracking-[-0.01em] text-neutral-950 md:text-[16px] md:leading-[29px] md:font-bold md:tracking-[-0.02em] dark:text-white"
               >
                 {section.heading}
               </h2>
-              <div className="mt-3 space-y-4 text-[15px] leading-7 text-neutral-600 md:text-base md:leading-8 dark:text-neutral-400">
+              <div className="mt-3 space-y-4 text-[15px] leading-7 text-neutral-600 md:text-[14px] md:leading-[29px] md:tracking-[-0.02em] md:text-neutral-500 dark:text-neutral-400">
                 {section.blocks.map((block, i) => (
                   <Block key={i} block={block} />
                 ))}

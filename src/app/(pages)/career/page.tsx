@@ -48,13 +48,14 @@ export default async function CareerPage() {
       <CareerHowWeWork content={howWeWork} />
       <OfficesSection
         content={{ ...about.offices, ...officesHeading }}
-        subtitleMaxWidth="34rem"
+        variant="figma"
+        subtitleMaxWidth="min(34rem, 467px)"
       />
-      {/* Narrower title so it wraps after "your", as on About Us; closer to the maps here. */}
+      {/* Figma desktop: 69px under the maps. */}
       <CardCarouselSection
         content={about.stories}
-        headlineMaxWidth="38rem"
-        headingClassName="pt-16 pb-10 md:pt-[62px] md:pb-12"
+        variant="figma"
+        headingClassName="pt-16 pb-10 md:pt-[69px] md:pb-[34px]"
       />
     </PageFrame>
   );

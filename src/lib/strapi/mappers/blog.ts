@@ -13,6 +13,27 @@ import type {
 import { RawCardCarousel, mapCardCarousel } from './landing';
 import { mapImage, optionalText, text } from './shared';
 
+/** Bundled stand-in for an image block saved in Strapi without an upload. */
+const PLACEHOLDER_IMAGE = (alt: string): ImageAsset => ({
+  src: '/Blog/northfield-cover.jpg',
+  alt,
+  width: 485,
+  height: 472,
+});
+
+/** Bundled stand-in logos (all 96px tall), cycled for logos saved without an upload. */
+const PLACEHOLDER_LOGOS: Array<[file: string, width: number]> = [
+  ['hobbes', 267],
+  ['digit', 222],
+  ['writesonic', 318],
+  ['ltv-ai', 264],
+  ['gigamind', 255],
+];
+const placeholderLogo = (index: number, alt: string): ImageAsset => {
+  const [file, width] = PLACEHOLDER_LOGOS[index % PLACEHOLDER_LOGOS.length];
+  return { src: `/Blog/logos/${file}.png`, alt, width, height: 96 };
+};
+
 interface RawBlogBlock {
   __component?: string;
   heading?: string | null;
@@ -58,20 +79,16 @@ function mapBlogBody(raw: RawBlogBlock[]): BlogBlock[] {
             ]
           : [];
       case 'blog.image':
-        return block.image?.url
-          ? [
-              {
-                type: 'image',
-                image: mapImage(block.image, {
-                  src: '',
-                  alt: text(block.caption, ''),
-                  width: 1200,
-                  height: 800,
-                }),
-                caption: optionalText(block.caption),
-              },
-            ]
-          : [];
+        return [
+          {
+            type: 'image',
+            image: mapImage(
+              block.image,
+              PLACEHOLDER_IMAGE(text(block.caption, ''))
+            ),
+            caption: optionalText(block.caption),
+          },
+        ];
       default:
         return [];
     }
@@ -80,6 +97,7 @@ function mapBlogBody(raw: RawBlogBlock[]): BlogBlock[] {
 
 export interface RawBlogPost {
   title?: string | null;
+  breadcrumbLabel?: string | null;
   slug?: string | null;
   summary?: string | null;
   excerpt?: string | null;
@@ -100,6 +118,8 @@ export function mapBlogPost(raw: RawBlogPost, fallback: BlogPost): BlogPost {
   return {
     slug: text(raw.slug, fallback.slug),
     title: text(raw.title, fallback.title),
+    breadcrumbLabel:
+      optionalText(raw.breadcrumbLabel) ?? fallback.breadcrumbLabel,
     summary: text(raw.summary, fallback.summary),
     excerpt: text(raw.excerpt, fallback.excerpt),
     coverImage: mapImage(raw.coverImage, fallback.coverImage),
@@ -127,8 +147,8 @@ function mapBlogStats(
 
 /**
  * Logos without a name are skipped (none left → the fallback logos); one
- * without an image uses the fallback logo at the same position, if any,
- * otherwise it is dropped.
+ * without an image uses the fallback logo at the same position, or else a
+ * bundled placeholder logo.
  */
 function mapBlogLogos(
   raw: RawBlogPost['logos'],
@@ -138,18 +158,13 @@ function mapBlogLogos(
     .filter(logo => text(logo?.name, ''))
     .flatMap((logo, index): BlogLogo[] => {
       const base = fallback[index];
-      if (!logo.image?.url && !base) return [];
       return [
         {
           name: logo.name!,
-          image: base
-            ? mapImage(logo.image, base.image)
-            : mapImage(logo.image, {
-                src: '',
-                alt: logo.name!,
-                width: 1,
-                height: 1,
-              }),
+          image: mapImage(
+            logo.image,
+            base?.image ?? placeholderLogo(index, logo.name!)
+          ),
           href: optionalText(logo.href),
         },
       ];
