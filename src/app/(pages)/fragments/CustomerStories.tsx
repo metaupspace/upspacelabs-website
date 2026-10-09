@@ -59,7 +59,7 @@ export function CustomerStories({ stories }: { stories: CustomerStory[] }) {
                 quote:
                   'md:text-[30px] md:font-medium md:tracking-[-0.2px] md:[line-height:39px]',
                 author:
-                  'md:text-[18px] md:font-bold md:tracking-[0.04em] md:[line-height:28px]',
+                  'md:text-[18px] md:font-bold md:tracking-[-0.04em] md:[line-height:28px]',
                 action:
                   'md:text-[14px] md:font-medium md:tracking-[-0.02em] md:[line-height:20px]',
               }}

@@ -8,7 +8,7 @@ import type { TeamContent } from '@/lib/types';
  * of square portraits with the name and role under each — auto-scrolling
  * inside the page guides (pauses on hover / touch, still under reduced
  * motion). The `team` id is the hero's "Meet the Team" target. Desktop type
- * from Figma: 32/38 Bold title, 14/20 Medium text; name 18/28 Bold +4%, role 14/20.
+ * from Figma: 32/38 Bold title, 14/20 Medium text; name 18/28 Bold -4%, role 14/20.
  */
 export function AboutTeam({ content }: { content: TeamContent }) {
   return (
@@ -54,7 +54,7 @@ export function AboutTeam({ content }: { content: TeamContent }) {
               media: 'rounded-lg md:rounded-[9px]',
               body: 'mt-[14px] md:mt-[10px]',
               title:
-                'text-[20px] font-bold [font-variation-settings:normal] [line-height:1.2] md:text-[18px] md:tracking-[0.04em] md:[line-height:28px]',
+                'text-[20px] font-bold [font-variation-settings:normal] [line-height:1.2] md:text-[18px] md:tracking-[-0.04em] md:[line-height:28px]',
               description:
                 'mt-2 text-[16px] text-neutral-500 [line-height:1.3] md:mt-[2px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:20px] dark:text-neutral-400',
             },

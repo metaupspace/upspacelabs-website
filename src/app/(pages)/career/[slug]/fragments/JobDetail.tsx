@@ -87,7 +87,7 @@ export function JobDetail({
                 label:
                   'mt-0 text-[15.5px] text-neutral-500 [line-height:22px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:20px] dark:text-neutral-400',
                 value:
-                  'mt-2 text-[20px] font-normal tracking-[-0.01em] [line-height:28px] md:text-[18px] md:font-medium md:tracking-[0.04em]',
+                  'mt-2 text-[20px] font-normal tracking-[-0.01em] [line-height:28px] md:text-[18px] md:font-medium md:tracking-[-0.04em]',
                 // On the left page guide, beside each value.
                 accent: 'top-[51px] -left-[46px] max-md:hidden',
               }}

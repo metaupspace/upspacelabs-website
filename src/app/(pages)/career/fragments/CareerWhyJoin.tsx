@@ -59,7 +59,7 @@ export function CareerWhyJoin({ content }: { content: WhyJoinContent }) {
               className="border-neutral-200 max-sm:border-b max-sm:px-5 max-sm:pt-7 max-sm:pb-7 max-sm:first:pt-0 max-sm:last:border-b-0 dark:border-neutral-800"
             >
               <Sparkle />
-              <h3 className="mt-[15px] max-w-[18rem] text-[19.5px] [line-height:1.2] font-bold tracking-[-0.01em] text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:tracking-[0.04em] dark:text-white">
+              <h3 className="mt-[15px] max-w-[18rem] text-[19.5px] [line-height:1.2] font-bold tracking-[-0.01em] text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:tracking-[-0.04em] dark:text-white">
                 {perk.title}
               </h3>
               {perk.description && (

@@ -23,7 +23,7 @@ export default async function AboutPage() {
       {/* Unlike the home hero: a darker subtitle and the team photo set further down.
           Figma desktop: the 48/58 title (-0.4px) 151px down, 15px over the 14px
           Medium text, the Medium buttons 25px under it (the second 43px tall,
-          +4%), and 65px lower the photo cropped to 1107×564 — zoomed 1.126× as
+          -4%), and 65px lower the photo cropped to 1107×564 — zoomed 1.126× as
           Figma's fill crops it (square corners, as asked). */}
       <HeroSection
         content={hero}
@@ -34,7 +34,7 @@ export default async function AboutPage() {
             'text-neutral-500 md:mt-[15px] md:text-[14px] md:font-medium dark:text-neutral-400',
           actionsRow: 'md:mt-[25px]',
           actions: 'md:font-medium md:tracking-[-0.02em]',
-          secondaryAction: 'md:h-[43px] md:tracking-[0.04em]',
+          secondaryAction: 'md:h-[43px] md:tracking-[-0.04em]',
           media: 'mt-[45px] md:mt-[65px]',
           frame: 'md:aspect-[1110/564]',
           image:

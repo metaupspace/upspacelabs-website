@@ -54,7 +54,7 @@ export function JobDescription({
       >
         <h2
           id="about-role"
-          className="text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:font-bold md:tracking-[0.04em] dark:text-white"
+          className="text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:font-bold md:tracking-[-0.04em] dark:text-white"
         >
           {labels.aboutTitle}
         </h2>
@@ -66,7 +66,7 @@ export function JobDescription({
 
         {groups.length > 0 && (
           <>
-            <h2 className="mt-8 text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:font-bold md:tracking-[0.04em] dark:text-white">
+            <h2 className="mt-8 text-[21px] [line-height:1.3] font-semibold text-black [font-variation-settings:normal] md:text-[18px] md:[line-height:28px] md:font-bold md:tracking-[-0.04em] dark:text-white">
               {labels.requirementsTitle}
             </h2>
             <dl className={`mt-4 ${BODY}`}>
