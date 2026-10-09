@@ -13,7 +13,7 @@ export function FeaturedApps({ content }: FeaturedAppsProps) {
   const { label, apps, action, image } = content;
 
   return (
-    <InnerGuideContent contentClassName="px-6 pb-16 md:px-[60px] md:pb-24">
+    <InnerGuideContent contentClassName="px-6 pb-16 md:px-[60px] md:pb-0">
       <ProductSpotlight
         as="section"
         aria-label={label}
@@ -35,6 +35,13 @@ export function FeaturedApps({ content }: FeaturedAppsProps) {
             className="block h-auto w-full rounded-[20px]"
           />
         }
+        // Figma desktop: Medium label, link and badges (14px link), Bold app names.
+        classNames={{
+          label: 'md:font-medium md:tracking-[-0.02em]',
+          itemTitle: 'md:font-bold',
+          itemBadge: 'md:font-medium',
+          action: 'md:text-[14px] md:font-medium',
+        }}
         linkComponent={AppLink}
       />
     </InnerGuideContent>

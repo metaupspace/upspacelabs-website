@@ -11,12 +11,14 @@ import type { OpenRolesContent } from '@/lib/types';
  * "Open roles at UpSpace Labs": a centred heading over the design system's
  * ListingRows (sized at ~0.85 of its defaults, as designed) — one grey row per job (position, team, location, an
  * up-right arrow), each linking to the role's page. The roles come from the
- * Job Portal API through `useOpenRoles`. `open-roles` is the
- * target of the hero's "See Open Roles" button.
+ * Job Portal API through `useOpenRoles` only — no built-in roles, so the
+ * section is hidden until the API answers (and while it is unreachable).
+ * `open-roles` is the target of the hero's "See Open Roles" button.
  */
 export function CareerOpenRoles({ content }: { content: OpenRolesContent }) {
-  // Jobs from the Job Portal API (prefetched on the server), built-in ones while it is down.
-  const { roles } = useOpenRoles(content.jobs);
+  // Jobs from the Job Portal API, prefetched on the server.
+  const { roles } = useOpenRoles();
+  if (!roles) return null;
 
   return (
     <section
@@ -31,9 +33,9 @@ export function CareerOpenRoles({ content }: { content: OpenRolesContent }) {
         classNames={{
           content: 'px-6',
           headline:
-            'text-[30px] font-bold tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.2] md:text-[2.42rem]',
+            'text-[30px] font-bold tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.2] md:text-[32px] md:tracking-[-0.2px] md:[line-height:38px]',
           subtitle:
-            'mt-3 text-[15px] text-neutral-500 [line-height:23px] md:text-[15.5px] dark:text-neutral-400',
+            'mt-3 text-[15px] text-neutral-500 [line-height:23px] md:mt-[8px] md:text-[14px] md:font-medium md:tracking-[-0.02em] md:[line-height:20px] dark:text-neutral-400',
         }}
       />
       <InnerGuideContent contentClassName="px-6 pb-20 md:pb-24">
@@ -71,9 +73,12 @@ export function CareerOpenRoles({ content }: { content: OpenRolesContent }) {
           iconGap="51px"
           classNames={{
             row: 'md:pl-[34px] md:pr-6',
-            label: 'md:text-[13.5px] md:[line-height:20px]',
-            title: 'md:text-[18px] md:[line-height:26px]',
-            value: 'md:text-[18px] md:[line-height:26px]',
+            // Figma desktop: 12/16 labels over 16/24 Medium (-2%) values.
+            label: 'md:text-[12px] md:[line-height:16px]',
+            title:
+              'md:text-[16px] md:font-medium md:tracking-[-0.02em] md:[line-height:24px]',
+            value:
+              'md:text-[16px] md:font-medium md:tracking-[-0.02em] md:[line-height:24px]',
             icon: 'md:[&>svg]:size-[41px]',
           }}
         />

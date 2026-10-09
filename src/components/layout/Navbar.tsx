@@ -23,7 +23,7 @@ function useHydrated() {
   );
 }
 
-/** Site header — the design system's Navbar fed with Strapi navigation content. */
+/** Site header — the design system's Navbar fed with Strapi navigation content, always visible at the top. */
 export function Navbar({ content }: NavbarProps) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
@@ -47,6 +47,16 @@ export function Navbar({ content }: NavbarProps) {
       cta={{ label: content.ctaText, href: content.ctaHref }}
       actions={<ThemeToggle value={toggleValue} onValueChange={setTheme} />}
       mobileActionsLabel={content.appearanceLabel}
+      // Figma desktop: links and button in Medium with -2% tracking.
+      classNames={{
+        link: 'md:font-medium md:tracking-[-0.02em]',
+        linkActive: 'md:font-medium md:tracking-[-0.02em]',
+        // White text on the indigo button in dark mode too (the block switches it to black).
+        cta: 'md:font-medium md:tracking-[-0.02em] dark:text-white',
+        mobileCta: 'dark:text-white',
+      }}
+      // Sticky: stays at the top while scrolling (the block hides it on scroll down by default).
+      hideOnScroll={false}
       linkComponent={AppLink}
     />
   );

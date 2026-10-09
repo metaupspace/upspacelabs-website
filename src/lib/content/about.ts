@@ -37,6 +37,13 @@ export const aboutPageFallback: AboutPageContent = {
       { label: 'Dubai', lat: 25.2, lng: 55.27, altitude: 0.06 },
       { label: 'New York', lat: 40.71, lng: -74.0, altitude: 0.08 },
       { label: 'Sydney', lat: -33.87, lng: 151.21, altitude: 0.1 },
+      { label: 'Mumbai', lat: 19.08, lng: 72.88, altitude: 0.04 },
+      { label: 'Bangkok', lat: 13.76, lng: 100.5, altitude: 0.05 },
+      { label: 'Jakarta', lat: -6.2, lng: 106.85, altitude: 0.07 },
+      { label: 'Hong Kong', lat: 22.32, lng: 114.17, altitude: 0.06 },
+      { label: 'Shanghai', lat: 31.23, lng: 121.47, altitude: 0.07 },
+      { label: 'Seoul', lat: 37.57, lng: 126.98, altitude: 0.08 },
+      { label: 'Tokyo', lat: 35.68, lng: 139.69, altitude: 0.09 },
     ],
   },
   team: {
@@ -79,7 +86,7 @@ export const aboutPageFallback: AboutPageContent = {
     title: 'Our path of progress',
     description:
       'Founded in Delhi in 2026. Here is what we are launching, in order.',
-    hint: '[Scroll to Explore]',
+    hint: 'Skip',
     // The four steps twice, so the path runs past the first screen.
     milestones: [0, 1].flatMap(() => [
       {

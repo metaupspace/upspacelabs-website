@@ -16,7 +16,7 @@
     },
     "hint": {
       "type": "string",
-      "description": "Corner hint, e.g. \"[Scroll to Explore]\""
+      "description": "Label of the corner Skip button that jumps past the timeline, e.g. Skip (empty hides it)"
     },
     "milestones": {
       "type": "component",

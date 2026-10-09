@@ -5,16 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useOpenRoles } from '@/hooks/useOpenRoles';
 import { jobsService } from '@/services/jobs.service';
 import { useStore } from '@/store';
-import type { ApiJob, JobListing } from '@/lib/types';
-
-const FALLBACK: JobListing[] = [
-  {
-    title: 'Frontend Engineer',
-    slug: 'frontend-engineer',
-    team: 'Engineering',
-    location: 'Delhi',
-  },
-];
+import type { ApiJob } from '@/lib/types';
 
 const apiJob = (jobId: string, department: string): ApiJob => ({
   _id: jobId,
@@ -57,27 +48,26 @@ describe('useOpenRoles', () => {
       apiJob('ENG-1', 'Engineering'),
       apiJob('DES-1', 'Design'),
     ]);
-    const { result } = renderHook(() => useOpenRoles(FALLBACK), { wrapper });
+    const { result } = renderHook(() => useOpenRoles(), { wrapper });
     await waitFor(() => expect(result.current.roles).toHaveLength(2));
-    expect(result.current.isFallback).toBe(false);
     act(() => useStore.getState().setJobsTeam('Design'));
-    expect(result.current.roles.map(r => r.slug)).toEqual(['des-1']);
+    expect(result.current.roles?.map(r => r.slug)).toEqual(['des-1']);
   });
 
   it('stays empty when the API has no open roles', async () => {
     vi.spyOn(jobsService, 'list').mockResolvedValue([]);
-    const { result } = renderHook(() => useOpenRoles(FALLBACK), { wrapper });
+    const { result } = renderHook(() => useOpenRoles(), { wrapper });
     await waitFor(() => expect(result.current.isLoading).toBe(false));
     expect(result.current.roles).toEqual([]);
   });
 
-  it('shows the built-in roles while the API is unreachable', async () => {
+  it('has no roles (section hidden) while the API is unreachable', async () => {
     vi.spyOn(jobsService, 'list').mockRejectedValue({
       message: 'fetch failed',
       status: 0,
     });
-    const { result } = renderHook(() => useOpenRoles(FALLBACK), { wrapper });
-    await waitFor(() => expect(result.current.isFallback).toBe(true));
-    expect(result.current.roles).toEqual(FALLBACK);
+    const { result } = renderHook(() => useOpenRoles(), { wrapper });
+    await waitFor(() => expect(result.current.isError).toBe(true));
+    expect(result.current.roles).toBeNull();
   });
 });

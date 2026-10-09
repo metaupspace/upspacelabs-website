@@ -43,11 +43,11 @@ export function CareerHowWeWork({ content }: { content: HowWeWorkContent }) {
         columnGap="2rem"
         classNames={{
           eyebrow:
-            'mb-2.5 text-[13.5px] font-bold tracking-[0.02em] text-[#2563EB] uppercase [line-height:1.3]',
+            'mb-2.5 text-[13.5px] font-bold tracking-[0.02em] text-[#2563EB] uppercase [line-height:1.3] md:text-[12px] md:tracking-normal md:[line-height:16px]',
           title:
-            'text-[30px] font-bold tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.15] md:text-[39px] md:[line-height:1.1]',
+            'text-[30px] font-bold tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.15] md:text-[32px] md:tracking-[-0.2px] md:[line-height:38px]',
           description:
-            'mt-[14px] text-[14px] text-neutral-500 [line-height:23px] dark:text-neutral-400',
+            'mt-[14px] text-[14px] text-neutral-500 [line-height:23px] md:text-[12px] md:[line-height:20px] dark:text-neutral-400',
           media: 'overflow-visible',
         }}
       />

@@ -14,9 +14,10 @@ const LOGO_PROPS = {
 
 /**
  * "UpSentrix Products Used by …": a grey label over greyscale logos — the
- * design system's LogoMarquee. Phones: a 15px label over one row that
- * scrolls edge to edge (logos 44px apart, cut off at the screen edges).
- * From md up: a 12.5px label over a centred, static row 72px apart.
+ * design system's LogoMarquee, scrolling continuously at every size (pauses
+ * on hover, still under reduced motion). Phones: a 15px label over a row
+ * running edge to edge, logos 44px apart. From md up: a 12.5px label over a
+ * row between the page guides, logos 72px apart.
  */
 export function BlogLogos({ post }: { post: BlogPost }) {
   if (!post.logos.length) return null;
@@ -31,11 +32,11 @@ export function BlogLogos({ post }: { post: BlogPost }) {
     <InnerGuideContent contentClassName="px-6 pt-14 md:px-[60px] md:pt-[57px]">
       <section aria-label={post.logosLabel || 'Logos'}>
         {post.logosLabel && (
-          <p className="mb-[30px] text-center text-[15px] font-medium text-[#808080] md:mb-11 md:text-[12.5px] dark:text-neutral-500">
+          <p className="mb-[30px] text-center text-[15px] font-medium text-[#808080] md:mb-11 md:text-[14px] md:[line-height:28.9px] md:font-semibold dark:text-neutral-500">
             {post.logosLabel}
           </p>
         )}
-        {/* Phones: full-bleed marquee (out of the 24px gutter), no edge fade. */}
+        {/* Out of the side padding, so logos are cut off at the guides / screen edges. */}
         <LogoMarquee
           {...LOGO_PROPS}
           logos={logos}
@@ -47,9 +48,10 @@ export function BlogLogos({ post }: { post: BlogPost }) {
         <LogoMarquee
           {...LOGO_PROPS}
           logos={logos}
-          mode="static"
+          mode="marquee"
           gap={72}
-          className="hidden md:block"
+          fade={0}
+          className="-mx-[60px] hidden w-auto md:block"
         />
       </section>
     </InnerGuideContent>

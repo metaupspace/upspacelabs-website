@@ -428,6 +428,7 @@ describe('mapBlogPost', () => {
     expect(post).toEqual({
       slug: 'northfield-logistics',
       title: 'New title',
+      breadcrumbLabel: fallback.breadcrumbLabel,
       summary: fallback.summary,
       excerpt: fallback.excerpt,
       coverImage: {
@@ -465,9 +466,27 @@ describe('mapBlogPost', () => {
     expect(mapBlogPost({ title: 'T', logos: [] }, fallback).logos).toEqual(
       fallback.logos
     );
+    // A post without built-in logos: a logo without an upload gets a bundled one.
+    expect(
+      mapBlogPost(
+        { title: 'T', logos: [{ name: 'Gamma' }] },
+        { ...fallback, logos: [] }
+      ).logos
+    ).toEqual([
+      {
+        name: 'Gamma',
+        image: {
+          src: '/Blog/logos/hobbes.png',
+          alt: 'Gamma',
+          width: 267,
+          height: 96,
+        },
+        href: null,
+      },
+    ]);
   });
 
-  it('maps the body blocks in order and skips empty or unknown ones', () => {
+  it('maps the body blocks in order, skips empty or unknown ones, and gives an image block without an upload the bundled image', () => {
     const post = mapBlogPost(
       {
         title: 'T',
@@ -495,6 +514,16 @@ describe('mapBlogPost', () => {
     expect(post.body).toEqual([
       { type: 'text', heading: 'Intro', groups: [['A', 'B'], ['C']] },
       { type: 'quote', quote: 'Great', author: 'Ana', role: null },
+      {
+        type: 'image',
+        image: {
+          src: '/Blog/northfield-cover.jpg',
+          alt: 'No image',
+          width: 485,
+          height: 472,
+        },
+        caption: 'No image',
+      },
     ]);
   });
 
@@ -823,14 +852,13 @@ describe('mapCareerPageContent', () => {
     );
   });
 
-  it('takes the open-roles heading from Strapi and keeps the built-in roles as fallback', () => {
+  it('takes the open-roles heading from Strapi', () => {
     const fallback = careerPageFallback.openRoles;
     expect(
       mapOpenRoles({ title: 'We are hiring', description: '' }, fallback)
     ).toEqual({
       title: 'We are hiring',
       description: fallback.description,
-      jobs: fallback.jobs,
     });
     expect(mapOpenRoles(null, fallback)).toEqual(fallback);
   });

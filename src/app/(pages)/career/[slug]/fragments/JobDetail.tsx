@@ -50,7 +50,7 @@ export function JobDetail({
         <article className="grid gap-12 md:grid-cols-[minmax(0,295px)_minmax(0,1fr)] md:gap-[87px]">
           <header>
             <nav aria-label="Breadcrumb">
-              <ol className="flex items-center gap-1.5 text-[13.5px]">
+              <ol className="flex items-center gap-1.5 text-[13.5px] md:text-[12px] md:[line-height:16px] md:font-medium">
                 <li>
                   <AppLink
                     href="/"
@@ -70,7 +70,7 @@ export function JobDetail({
                 </li>
               </ol>
             </nav>
-            <h1 className="mt-4 text-[28px] [line-height:1.25] font-semibold tracking-[-0.01em] text-black [font-variation-settings:normal] dark:text-white">
+            <h1 className="mt-4 text-[28px] [line-height:1.25] font-semibold tracking-[-0.01em] text-black [font-variation-settings:normal] md:text-[24px] md:[line-height:30px] md:tracking-[-0.15px] dark:text-white">
               {job.title}
             </h1>
             <StatList
@@ -85,9 +85,9 @@ export function JobDetail({
                 root: 'mt-[34px]',
                 item: 'flex-col border-b border-neutral-300 pt-[26px] pb-[22px] pl-0 last:border-b-0 dark:border-neutral-700',
                 label:
-                  'mt-0 text-[15.5px] text-neutral-500 [line-height:22px] dark:text-neutral-400',
+                  'mt-0 text-[15.5px] text-neutral-500 [line-height:22px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:20px] dark:text-neutral-400',
                 value:
-                  'mt-2 text-[20px] font-normal tracking-[-0.01em] [line-height:28px]',
+                  'mt-2 text-[20px] font-normal tracking-[-0.01em] [line-height:28px] md:text-[18px] md:font-medium md:tracking-[-0.04em]',
                 // On the left page guide, beside each value.
                 accent: 'top-[51px] -left-[46px] max-md:hidden',
               }}
@@ -98,7 +98,7 @@ export function JobDetail({
             <JobDescription job={job} labels={labels} />
             <AppLink
               href={`/career/${slug}/apply`}
-              className="mt-10 flex h-[60px] w-full items-center justify-center gap-3 rounded-[9px] bg-[#4F46E5] text-[17px] font-medium text-white transition-colors hover:bg-[#4338CA] focus-visible:ring-4 focus-visible:ring-[#4F46E5]/30 focus-visible:outline-none md:h-[68px] md:text-[18px]"
+              className="mt-10 flex h-[60px] w-full items-center justify-center gap-3 rounded-[9px] bg-[#4F46E5] text-[17px] font-medium text-white transition-colors hover:bg-[#4338CA] focus-visible:ring-4 focus-visible:ring-[#4F46E5]/30 focus-visible:outline-none md:h-[68px] md:text-[16px] md:[line-height:24px] md:tracking-[-0.02em]"
             >
               {labels.applyLabel}
               <ArrowRight aria-hidden size={20} strokeWidth={2} />

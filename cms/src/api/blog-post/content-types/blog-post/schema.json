@@ -21,6 +21,10 @@
       "targetField": "title",
       "required": true
     },
+    "breadcrumbLabel": {
+      "type": "string",
+      "description": "Last breadcrumb item, e.g. Read Northfield’s Story (empty: the title)"
+    },
     "summary": {
       "type": "text"
     },
