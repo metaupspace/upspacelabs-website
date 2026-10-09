@@ -96,43 +96,11 @@ export const careerPageFallback: CareerPageContent = {
       },
     ],
   },
-  // Built-in roles: shown only while the Job Portal API is unreachable.
+  // The heading only: the roles come from the Job Portal API.
   openRoles: {
     title: 'Open roles at UpSpace Labs',
     description:
       'Every role is full-time and based in our Delhi office. Don’t see your role? Write to us anyway.',
-    jobs: [
-      {
-        title: 'Frontend Engineer',
-        slug: 'frontend-engineer',
-        team: 'Engineering',
-        location: 'Delhi',
-      },
-      {
-        title: 'Backend Engineer',
-        slug: 'backend-engineer',
-        team: 'Engineering',
-        location: 'Delhi',
-      },
-      {
-        title: 'UI/UX Designer',
-        slug: 'ui-ux-designer',
-        team: 'Design',
-        location: 'Delhi',
-      },
-      {
-        title: 'QA Engineer',
-        slug: 'qa-engineer',
-        team: 'Engineering',
-        location: 'Delhi',
-      },
-      {
-        title: 'Business Development',
-        slug: 'business-development',
-        team: 'Sales',
-        location: 'Delhi',
-      },
-    ],
   },
   howWeWork: {
     eyebrow: 'How we work',

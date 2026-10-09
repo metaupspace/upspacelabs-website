@@ -168,7 +168,10 @@ export const landingPageFallback: LandingPageContent = {
       quote: STORY_QUOTE,
       author: 'Priya Malhotra',
       role: 'Head of HR, Northfield Logistics',
-      action: { label: 'Read Northfield\u2019s Story', href: '/about-us' },
+      action: {
+        label: 'Read Northfield\u2019s Story',
+        href: '/blog/northfield-logistics',
+      },
     },
     {
       company: 'Brightpath Schools',
@@ -176,7 +179,10 @@ export const landingPageFallback: LandingPageContent = {
       quote: STORY_QUOTE,
       author: 'Arjun Mehta',
       role: 'Principal, Brightpath Schools',
-      action: { label: 'Read Brightpath\u2019s Story', href: '/about-us' },
+      action: {
+        label: 'Read Brightpath\u2019s Story',
+        href: '/blog/northfield-logistics',
+      },
     },
     {
       company: 'Meridian Health',
@@ -184,7 +190,10 @@ export const landingPageFallback: LandingPageContent = {
       quote: STORY_QUOTE,
       author: 'Sara Iyer',
       role: 'COO, Meridian Health',
-      action: { label: 'Read Meridian\u2019s Story', href: '/about-us' },
+      action: {
+        label: 'Read Meridian\u2019s Story',
+        href: '/blog/northfield-logistics',
+      },
     },
     {
       company: 'Kavya Retail',
@@ -192,7 +201,10 @@ export const landingPageFallback: LandingPageContent = {
       quote: STORY_QUOTE,
       author: 'Rohan Kapoor',
       role: 'Founder, Kavya Retail',
-      action: { label: 'Read Kavya\u2019s Story', href: '/about-us' },
+      action: {
+        label: 'Read Kavya\u2019s Story',
+        href: '/blog/northfield-logistics',
+      },
     },
   ],
 };

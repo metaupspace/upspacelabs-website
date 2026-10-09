@@ -70,11 +70,13 @@ export function CareerHero({ content }: { content: CareerHeroContent }) {
           classNames={{
             content: 'px-6',
             eyebrow: `mb-[34px] ${ENTER}`,
-            headline: `text-[2.5rem] font-medium tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.15] md:text-[4.5rem] md:[line-height:1.1] ${ENTER} delay-150`,
-            subtitle: `mt-6 text-base text-neutral-500 [line-height:1.6] md:text-[1.25rem] md:[line-height:34px] dark:text-neutral-400 ${ENTER} delay-300`,
+            // Figma desktop: 48/58 SemiBold title (-0.4px), 14/24 Medium text, a
+            // 46px button with 14/20 Medium text, a 38px badge with 12/24 Medium text.
+            headline: `text-[2.5rem] font-medium tracking-[-0.02em] [font-variation-settings:normal] [line-height:1.15] md:text-[48px] md:font-semibold md:tracking-[-0.4px] md:[line-height:58px] ${ENTER} delay-150`,
+            subtitle: `mt-6 text-base text-neutral-500 [line-height:1.6] md:text-[14px] md:font-medium md:[line-height:24px] dark:text-neutral-400 ${ENTER} delay-300`,
             actions: `mt-9 ${ENTER} delay-500`,
             primaryAction:
-              'h-[65px] rounded-md [&>span]:gap-[18px] bg-[#2563EB] px-[33px] text-[19px] font-medium text-white hover:bg-[#1D4ED8] focus-visible:ring-[#2563EB]/30',
+              'h-[65px] rounded-md [&>span]:gap-[18px] bg-[#2563EB] px-[33px] text-[19px] font-medium text-white hover:bg-[#1D4ED8] focus-visible:ring-[#2563EB]/30 md:h-[46px] md:rounded-[5px] md:px-[23px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:20px] md:[&>span]:gap-2',
           }}
           headlineMaxWidth="48rem"
           subtitleMaxWidth="46rem"
@@ -84,12 +86,15 @@ export function CareerHero({ content }: { content: CareerHeroContent }) {
                 variant="custom"
                 label={badge}
                 startIcon={
-                  <span aria-hidden className="relative flex size-[17px]">
+                  <span
+                    aria-hidden
+                    className="relative flex size-[17px] md:size-3"
+                  >
                     <span className="absolute inline-flex size-full rounded-full bg-[#2563EB] opacity-60 motion-safe:animate-ping" />
-                    <span className="relative inline-flex size-[17px] rounded-full bg-[#2563EB]" />
+                    <span className="relative inline-flex size-[17px] rounded-full bg-[#2563EB] md:size-3" />
                   </span>
                 }
-                className="h-[53px] gap-[14px] rounded-full border border-neutral-200 bg-white px-[29px] text-[17px] font-normal text-black dark:border-neutral-800 dark:bg-black dark:text-white"
+                className="h-[53px] gap-[14px] rounded-full border border-neutral-200 bg-white px-[29px] text-[17px] font-normal text-black md:h-[38px] md:gap-[10px] md:px-[21px] md:text-[12px] md:[line-height:24px] md:font-medium dark:border-neutral-800 dark:bg-black dark:text-white"
               />
             ) : undefined
           }

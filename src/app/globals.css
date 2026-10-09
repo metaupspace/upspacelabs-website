@@ -62,3 +62,101 @@ body {
     --gutter: calc(6.5625% + 1.9rem);
   }
 }
+
+/*
+ * Large screens: the layout is designed at ~1440px wide, and its sizes are
+ * mostly fixed pixels, so on bigger monitors the frame widened while text and
+ * images stayed small. Above 1440px the whole page scales with the screen
+ * (zoom ≈ width / 1440, stepped every 160px; the frame stops growing at
+ * 2560px, so does the zoom). Laptops and below are unchanged.
+ *
+ * `zoom` scales viewport units too (100vh becomes taller than the screen), so
+ * screen-height sizes divide by `--page-zoom`: see the overrides below and
+ * AboutProgress.
+ */
+html {
+  --page-zoom: 1;
+  @media (min-width: 1600px) {
+    --page-zoom: 1.111;
+    zoom: 1.111;
+  }
+  @media (min-width: 1760px) {
+    --page-zoom: 1.222;
+    zoom: 1.222;
+  }
+  @media (min-width: 1920px) {
+    --page-zoom: 1.333;
+    zoom: 1.333;
+  }
+  @media (min-width: 2080px) {
+    --page-zoom: 1.444;
+    zoom: 1.444;
+  }
+  @media (min-width: 2240px) {
+    --page-zoom: 1.556;
+    zoom: 1.556;
+  }
+  @media (min-width: 2400px) {
+    --page-zoom: 1.667;
+    zoom: 1.667;
+  }
+  @media (min-width: 2560px) {
+    --page-zoom: 1.778;
+    zoom: 1.778;
+  }
+}
+
+/* Pop-ups (Modal, e.g. the video player): at most 90% of the real screen height. */
+.max-h-\[90vh\] {
+  max-height: calc(90vh / var(--page-zoom));
+}
+
+/* The pinned ProgressPath (About Us): screen height plus its pan distance. */
+.pp-zoom-fix[style*='height'] {
+  height: calc(
+    100vh / var(--page-zoom) - var(--pp-top) + var(--pp-overflow, 0px)
+  ) !important;
+}
+
+/*
+ * Popovers positioned by Radix / Floating UI (Select lists…) measure the
+ * screen in real pixels; under the page zoom those numbers would be scaled a
+ * second time, so the wrapper cancels the zoom and its contents re-apply it.
+ */
+[data-radix-popper-content-wrapper] {
+  zoom: calc(1 / var(--page-zoom));
+}
+[data-radix-popper-content-wrapper] > * > * {
+  zoom: var(--page-zoom);
+}
+
+/*
+ * Footer watermark spotlight (FooterSpotlight.tsx), as on payloadcms.com: the
+ * watermark letters are painted with their background (`background-clip:
+ * text`) — a faint base, a fine grain and a soft glow that follows the mouse
+ * (`--spot-x` / `--spot-y`) and fades with `--spot-a`. At rest they look as
+ * before (~8% white). Only for hover-capable pointers.
+ */
+@property --spot-a {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@media (hover: hover) {
+  .footer-spotlight footer div[aria-hidden].uppercase > span {
+    color: transparent !important;
+    background-image:
+      radial-gradient(
+        circle 26rem at var(--spot-x, -100rem) var(--spot-y, -100rem),
+        rgb(255 255 255 / calc(0.34 * var(--spot-a))) 0%,
+        rgb(255 255 255 / calc(0.16 * var(--spot-a))) 35%,
+        transparent 70%
+      ),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E"),
+      linear-gradient(rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.05));
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: --spot-a 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+}

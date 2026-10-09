@@ -127,10 +127,7 @@ export function mapHowWeWork(
   };
 }
 
-/**
- * The open-roles heading from Strapi (the jobs come from the Job Portal API;
- * `fallback.jobs` stand in while it is unreachable).
- */
+/** The open-roles heading from Strapi (the jobs come from the Job Portal API only). */
 export function mapOpenRoles(
   raw: RawCareerPage['openRoles'],
   fallback: OpenRolesContent
@@ -138,7 +135,6 @@ export function mapOpenRoles(
   return {
     title: text(raw?.title, fallback.title),
     description: text(raw?.description, fallback.description),
-    jobs: fallback.jobs,
   };
 }
 
