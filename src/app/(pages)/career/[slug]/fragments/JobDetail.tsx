@@ -1,7 +1,7 @@
 'use client';
 
-import { ArrowRight, ChevronRight } from '@metaupspace/icons';
-import { StatList } from '@metaupspace/ui';
+import { ArrowRight, ChevronRight } from '@metaupspace-dev/icons';
+import { StatList } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { useJob } from '@/hooks/useJobs';

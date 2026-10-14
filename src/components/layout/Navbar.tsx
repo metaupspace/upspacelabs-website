@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { Navbar as SiteNavbar, ThemeToggle } from '@metaupspace/ui';
+import { Navbar as SiteNavbar, ThemeToggle } from '@metaupspace-dev/ui';
 import { AppLink } from '@/components/shared/AppLink';
 import { ThemedImage } from '@/components/shared/ThemedImage';
 import type { NavContent } from '@/lib/types';
@@ -54,6 +54,10 @@ export function Navbar({ content }: NavbarProps) {
         // White text on the indigo button in dark mode too (the block switches it to black).
         cta: 'md:font-medium md:tracking-[-0.02em] dark:text-white',
         mobileCta: 'dark:text-white',
+        // Mobile menu: shorter rows with the label vertically centred, and the
+        // links + appearance block centred between the header and the CTA.
+        mobileLinks: 'mt-auto',
+        mobileLink: 'h-[72px] items-center pt-0',
       }}
       // Sticky: stays at the top while scrolling (the block hides it on scroll down by default).
       hideOnScroll={false}

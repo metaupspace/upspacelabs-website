@@ -1,4 +1,4 @@
-import { CardCarousel } from '@metaupspace/ui';
+import { CardCarousel } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import type { TeamContent } from '@/lib/types';

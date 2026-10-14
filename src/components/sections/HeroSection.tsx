@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { ArrowRight } from '@metaupspace/icons';
-import { Hero } from '@metaupspace/ui';
+import { ArrowRight } from '@metaupspace-dev/icons';
+import { Hero } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { cn } from '@/lib/utils';

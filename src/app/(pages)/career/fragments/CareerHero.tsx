@@ -1,5 +1,5 @@
-import { ArrowUpRight } from '@metaupspace/icons';
-import { Badge, BeamLine, Hero } from '@metaupspace/ui';
+import { ArrowUpRight } from '@metaupspace-dev/icons';
+import { Badge, BeamLine, Hero } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import type { CareerHeroContent } from '@/lib/types';
@@ -54,8 +54,8 @@ export function CareerHero({ content }: { content: CareerHeroContent }) {
           <EdgeBeam side="right" delay={3.3} />
         </div>
         {badge && (
-          // The line through the pill's centre (137px + 26.5px), across the card.
-          <div className="absolute inset-x-0 top-[136px] md:inset-x-[7.2%] md:top-[163px]">
+          // The line through the pill's centre (phones 112px + 20px, desktop 137px + 26.5px), across the card.
+          <div className="absolute inset-x-0 top-[131.5px] md:inset-x-[7.2%] md:top-[163px]">
             <BeamLine
               lineColor="var(--color-neutral-200)"
               className="dark:[background:var(--color-neutral-800)]!"
@@ -76,7 +76,7 @@ export function CareerHero({ content }: { content: CareerHeroContent }) {
             subtitle: `mt-6 text-base text-neutral-500 [line-height:1.6] md:text-[14px] md:font-medium md:[line-height:24px] dark:text-neutral-400 ${ENTER} delay-300`,
             actions: `mt-9 ${ENTER} delay-500`,
             primaryAction:
-              'h-[65px] rounded-md [&>span]:gap-[18px] bg-[#2563EB] px-[33px] text-[19px] font-medium text-white hover:bg-[#1D4ED8] focus-visible:ring-[#2563EB]/30 md:h-[46px] md:rounded-[5px] md:px-[23px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:20px] md:[&>span]:gap-2',
+              'h-[50px] rounded-md [&>span]:gap-[10px] [&_svg]:size-5 bg-[#2563EB] px-[24px] text-[16px] font-medium text-white hover:bg-[#1D4ED8] focus-visible:ring-[#2563EB]/30 md:h-[46px] md:rounded-[5px] md:px-[23px] md:text-[14px] md:tracking-[-0.02em] md:[line-height:20px] md:[&>span]:gap-2 md:[&_svg]:size-6',
           }}
           headlineMaxWidth="48rem"
           subtitleMaxWidth="46rem"
@@ -86,15 +86,12 @@ export function CareerHero({ content }: { content: CareerHeroContent }) {
                 variant="custom"
                 label={badge}
                 startIcon={
-                  <span
-                    aria-hidden
-                    className="relative flex size-[17px] md:size-3"
-                  >
+                  <span aria-hidden className="relative flex size-3">
                     <span className="absolute inline-flex size-full rounded-full bg-[#2563EB] opacity-60 motion-safe:animate-ping" />
-                    <span className="relative inline-flex size-[17px] rounded-full bg-[#2563EB] md:size-3" />
+                    <span className="relative inline-flex size-3 rounded-full bg-[#2563EB]" />
                   </span>
                 }
-                className="h-[53px] gap-[14px] rounded-full border border-neutral-200 bg-white px-[29px] text-[17px] font-normal text-black md:h-[38px] md:gap-[10px] md:px-[21px] md:text-[12px] md:[line-height:24px] md:font-medium dark:border-neutral-800 dark:bg-black dark:text-white"
+                className="h-[40px] gap-[10px] rounded-full border border-neutral-200 bg-white px-[18px] text-[14px] font-normal text-black md:h-[38px] md:gap-[10px] md:px-[21px] md:text-[12px] md:[line-height:24px] md:font-medium dark:border-neutral-800 dark:bg-black dark:text-white"
               />
             ) : undefined
           }

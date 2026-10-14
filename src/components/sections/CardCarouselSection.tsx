@@ -1,5 +1,5 @@
-import { ArrowRight } from '@metaupspace/icons';
-import { CardCarousel } from '@metaupspace/ui';
+import { ArrowRight } from '@metaupspace-dev/icons';
+import { CardCarousel } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { SectionHeading } from '@/components/shared/SectionHeading';

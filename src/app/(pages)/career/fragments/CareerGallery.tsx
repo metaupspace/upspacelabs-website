@@ -1,4 +1,4 @@
-import { VideoGallery } from '@metaupspace/ui';
+import { VideoGallery } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { CareerVideo } from '@/lib/types';
 

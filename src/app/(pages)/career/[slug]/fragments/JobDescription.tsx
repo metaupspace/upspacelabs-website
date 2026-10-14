@@ -1,7 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useRef, useState } from 'react';
-import { ChevronDown } from '@metaupspace/icons';
+import { ChevronDown } from '@metaupspace-dev/icons';
 import type { ApiJob, JobDetailLabels } from '@/lib/types';
 
 /** Height of the folded text: 13 lines of 37px. */

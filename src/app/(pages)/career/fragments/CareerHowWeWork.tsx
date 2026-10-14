@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FeatureSplit } from '@metaupspace/ui';
+import { FeatureSplit } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { HowWeWorkContent } from '@/lib/types';
 

@@ -1,5 +1,5 @@
-import { ArrowUpRight } from '@metaupspace/icons';
-import { ProductShowcase } from '@metaupspace/ui';
+import { ArrowUpRight } from '@metaupspace-dev/icons';
+import { ProductShowcase } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ThemedImage } from '@/components/shared/ThemedImage';
@@ -67,6 +67,11 @@ export function ProductShowcaseSection({
           mobileLayout="cards"
           features={content.features}
           classNames={{
+            // Mobile cards: square corners on the card and its product image.
+            card: 'rounded-none',
+            cardMedia: 'rounded-none',
+            // Drop the link's built-in left inset so it lines up with the title and subtitle.
+            cardAction: 'px-0',
             // Figma desktop: tabs 14/20 Medium (the active one Bold) with a 10/12
             // Medium badge; features 14/20 over 10/13, both Medium.
             // 60px-tall tabs; the feature row 9px under the screenshot, 30px / 29px padding.

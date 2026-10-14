@@ -1,4 +1,4 @@
-import { LogoMarquee, type MarqueeLogo } from '@metaupspace/ui';
+import { LogoMarquee, type MarqueeLogo } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { BlogPost } from '@/lib/types';
 

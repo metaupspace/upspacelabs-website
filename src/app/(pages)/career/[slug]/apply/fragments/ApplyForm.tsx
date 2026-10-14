@@ -6,14 +6,14 @@ import {
   ChevronRight,
   CircleCheck,
   CloudUpload,
-} from '@metaupspace/icons';
+} from '@metaupspace-dev/icons';
 import {
   Button,
   FileDropper,
   Input,
   Select,
   SelectItem,
-} from '@metaupspace/ui';
+} from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { useApplyToJob, useUploadResume } from '@/hooks/useApplication';
