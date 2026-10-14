@@ -9,8 +9,8 @@ import {
   MessageCircle,
   Phone,
   Timer,
-} from '@metaupspace/icons';
-import { Button, Input, Select, SelectItem } from '@metaupspace/ui';
+} from '@metaupspace-dev/icons';
+import { Button, Input, Select, SelectItem } from '@metaupspace-dev/ui';
 import {
   normalizeSubmission,
   validateSubmission,

@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 /*
- * @metaupspace design system: its CSS variables (colour, radius, shadow and
+ * @metaupspace-dev design system: its CSS variables (colour, radius, shadow and
  * type tokens, flipped by the `.dark` class) and base styles.
  */
-@import '@metaupspace/ui/styles.css';
-@import '@metaupspace/ui/base.css';
+@import '@metaupspace-dev/ui/styles.css';
+@import '@metaupspace-dev/ui/base.css';
 
 /*
  * The design system's Tailwind preset (wired in tailwind.config.ts) and its
@@ -13,7 +13,7 @@
  * package's dist/ just like it does for our own src/.
  */
 @config '../../tailwind.config.mts';
-@source '../../node_modules/@metaupspace/ui/dist';
+@source '../../node_modules/@metaupspace-dev/ui/dist';
 
 @custom-variant dark (&:is(.dark *));
 

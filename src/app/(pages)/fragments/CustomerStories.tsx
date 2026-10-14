@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { ArrowRight } from '@metaupspace/icons';
-import { ProductShowcase, Testimonial } from '@metaupspace/ui';
+import { ArrowRight } from '@metaupspace-dev/icons';
+import { ProductShowcase, Testimonial } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import type { CustomerStory } from '@/lib/types';

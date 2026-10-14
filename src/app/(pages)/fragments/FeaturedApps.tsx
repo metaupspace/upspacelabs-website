@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ProductSpotlight } from '@metaupspace/ui';
+import { ProductSpotlight } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import type { FeaturedAppsContent } from '@/lib/types';

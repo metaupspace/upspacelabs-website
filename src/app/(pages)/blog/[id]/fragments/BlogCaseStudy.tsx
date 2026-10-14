@@ -1,4 +1,4 @@
-import { CaseStudy, type CaseStudyBlock } from '@metaupspace/ui';
+import { CaseStudy, type CaseStudyBlock } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { BlogBlock, BlogPost } from '@/lib/types';
 

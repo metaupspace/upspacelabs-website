@@ -1,5 +1,5 @@
-import { ChevronRight } from '@metaupspace/icons';
-import { FeatureSplit } from '@metaupspace/ui';
+import { ChevronRight } from '@metaupspace-dev/icons';
+import { FeatureSplit } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { InlineLinks } from '@/components/shared/InlineLinks';

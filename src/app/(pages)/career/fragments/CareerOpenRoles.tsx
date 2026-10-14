@@ -1,6 +1,6 @@
 'use client';
 
-import { ListingRows } from '@metaupspace/ui';
+import { ListingRows } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import { SectionHeading } from '@/components/shared/SectionHeading';

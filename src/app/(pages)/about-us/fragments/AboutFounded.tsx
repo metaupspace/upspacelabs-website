@@ -1,4 +1,4 @@
-import { FeatureSplit, Globe, type GlobeArc } from '@metaupspace/ui';
+import { FeatureSplit, Globe, type GlobeArc } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { FoundedContent } from '@/lib/types';
 

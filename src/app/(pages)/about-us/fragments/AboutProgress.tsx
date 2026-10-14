@@ -1,4 +1,4 @@
-import { ProgressPath } from '@metaupspace/ui';
+import { ProgressPath } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import type { ProgressContent } from '@/lib/types';
 import { PinnedPathHeight } from './PinnedPathHeight';

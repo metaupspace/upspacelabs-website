@@ -1,4 +1,4 @@
-import { Hero, type HeroClassNames } from '@metaupspace/ui';
+import { Hero, type HeroClassNames } from '@metaupspace-dev/ui';
 import type { SectionHeadingContent } from '@/lib/types';
 
 /** The display-cut heading ("Built for the Demands…"): 32/38 Bold title, 14/20 Medium #737373 description on desktop (Figma). */
