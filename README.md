@@ -1,13 +1,13 @@
 # UpSpace Labs website
 
 The marketing site for UpSpace Labs — Next.js 16 (App Router), Tailwind CSS v4 and the
-`@metaupspace/ui` design system. Every page's content comes from Strapi (`cms/`); open
+`@metaupspace-dev/ui` design system. Every page's content comes from Strapi (`cms/`); open
 roles and applications come from the Job Portal backend.
 
 ## Getting started
 
 ```bash
-export NODE_AUTH_TOKEN=<GitHub token with read:packages>   # @metaupspace/* come from GitHub Packages
+export NODE_AUTH_TOKEN=<GitHub token with read:packages>   # @metaupspace-dev/* come from GitHub Packages
 pnpm install
 cp .env.example .env.local     # then fill in (see the comments inside)
 (cd cms && docker compose up -d)   # Strapi + Postgres on :1337 — see cms/README.md
@@ -30,8 +30,8 @@ Without Strapi running every page still renders, using its built-in copy.
 
 ## Design system
 
-`@metaupspace/ui` (with `@metaupspace/icons` and `@metaupspace/design-tokens`) is installed from GitHub
-Packages at pinned versions. `.npmrc` routes the `@metaupspace` scope there and reads the token from
+`@metaupspace-dev/ui` (with `@metaupspace-dev/icons` and `@metaupspace-dev/design-tokens`) is installed from GitHub
+Packages at pinned versions. `.npmrc` routes the `@metaupspace-dev` scope there and reads the token from
 `NODE_AUTH_TOKEN`, so export a token with `read:packages` before `pnpm install`. To try unreleased
 design-system changes locally, run `pnpm ds:pack` (builds `../UpspaceLabs-Design-System` into `vendor/`
 and installs the tarballs) and revert `package.json` / `pnpm-workspace.yaml` before committing. After
@@ -87,7 +87,7 @@ client cache, so jobs are in the HTML and stay fresh in the browser.
 
 ## Conventions
 
-- **Design system first.** Reusable UI belongs in `@metaupspace/ui`; add or extend it
+- **Design system first.** Reusable UI belongs in `@metaupspace-dev/ui`; add or extend it
   there (with tests, story, docs and a changeset), try it here with `pnpm ds:pack`, and bump
   the pinned version once it is published. Website-only pieces
   live in `src/components`.

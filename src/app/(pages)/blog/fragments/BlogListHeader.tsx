@@ -1,5 +1,5 @@
-import { ChevronRight } from '@metaupspace/icons';
-import { Hero } from '@metaupspace/ui';
+import { ChevronRight } from '@metaupspace-dev/icons';
+import { Hero } from '@metaupspace-dev/ui';
 import { AppLink } from '@/components/shared/AppLink';
 import type { BlogPageContent } from '@/lib/types';
 

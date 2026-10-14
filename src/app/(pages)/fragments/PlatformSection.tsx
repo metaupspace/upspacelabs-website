@@ -1,5 +1,5 @@
-import { ArrowUpRight } from '@metaupspace/icons';
-import { FeatureSplit } from '@metaupspace/ui';
+import { ArrowUpRight } from '@metaupspace-dev/icons';
+import { FeatureSplit } from '@metaupspace-dev/ui';
 import { InnerGuideContent } from '@/components/layout/PageFrame';
 import { AppLink } from '@/components/shared/AppLink';
 import {

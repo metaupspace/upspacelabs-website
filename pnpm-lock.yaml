@@ -8,13 +8,13 @@ importers:
 
   .:
     dependencies:
-      '@metaupspace/design-tokens':
+      '@metaupspace-dev/design-tokens':
         specifier: 0.1.1
         version: 0.1.1(react@19.2.3)
-      '@metaupspace/icons':
+      '@metaupspace-dev/icons':
         specifier: 0.1.4
         version: 0.1.4(react@19.2.3)
-      '@metaupspace/ui':
+      '@metaupspace-dev/ui':
         specifier: 0.3.0
         version: 0.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@tanstack/react-query':
@@ -558,20 +558,20 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@metaupspace/design-tokens@0.1.1':
-    resolution: {integrity: sha512-uKhEQIg37O6fakRdQO4n+mQgvNrc2b5GwRCP03qEH0w5oo3OpkEMND0CEfbuMkzUJncvqX1zmKRtkLnk1LTD8g==, tarball: https://npm.pkg.github.com/download/@metaupspace/design-tokens/0.1.1/828ccaf32db25583e6316f6f46cb2b5977b8e5a0}
+  '@metaupspace-dev/design-tokens@0.1.1':
+    resolution: {integrity: sha512-IS8/5MuXiOWdiEg1vA0AiusPC2UVfBZXOWXnmQS8IKglbp59Pbsw2R5cqSQeJzNz4/41sqKXVI6trQUvX+RvzA==, tarball: https://npm.pkg.github.com/download/@metaupspace-dev/design-tokens/0.1.1/aee7f31bc53b2867513220987242611821e4666c}
     engines: {node: '>=18'}
     peerDependencies:
       react: '>=18'
 
-  '@metaupspace/icons@0.1.4':
-    resolution: {integrity: sha512-GZpw3XrD+YrJVwitkA30ebRjOJlFrHZfhtiPyL5pf+NX3E94AcVW4y6V3dsQDwDCy262ZNxbx93LKv3JRTT0mg==, tarball: https://npm.pkg.github.com/download/@metaupspace/icons/0.1.4/16047742c814c79dd918bb261e0aaffb4d876fa6}
+  '@metaupspace-dev/icons@0.1.4':
+    resolution: {integrity: sha512-bHDjyxnl2piM15K728yBDysN/NgtUdDAcARfHG73cN1bmwUaOLW525oAAXskiOuLvHvahSL3RstLD7vRcWR3SA==, tarball: https://npm.pkg.github.com/download/@metaupspace-dev/icons/0.1.4/26f9c8992b25a312281eb24095757be13df76775}
     engines: {node: '>=18'}
     peerDependencies:
       react: '>=18'
 
-  '@metaupspace/ui@0.3.0':
-    resolution: {integrity: sha512-pU3vpvcNHZAKpwe/xruKVhRklGSkbtsPW0rsvLs8W7Z1DLBhEu0+o/uFWyOPyfRUc5ixan1wn0v8qf+AEb9qgg==, tarball: https://npm.pkg.github.com/download/@metaupspace/ui/0.3.0/5661c349034427d0d507ed9afd11c9debd233314}
+  '@metaupspace-dev/ui@0.3.0':
+    resolution: {integrity: sha512-sAwHm1fQn3lK11hfzzPQUZEO5gLh8SxwTuCzU6TaLKRBsB5w75WyS/EGJx5myRQAOunp89H/oR6YfZBNHynevQ==, tarball: https://npm.pkg.github.com/download/@metaupspace-dev/ui/0.3.0/2e498b7cc9200aa83f828f5452a20012c67c6924}
     engines: {node: '>=22'}
     peerDependencies:
       react: '>=18'
@@ -4703,18 +4703,18 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@metaupspace/design-tokens@0.1.1(react@19.2.3)':
+  '@metaupspace-dev/design-tokens@0.1.1(react@19.2.3)':
     dependencies:
       react: 19.2.3
 
-  '@metaupspace/icons@0.1.4(react@19.2.3)':
+  '@metaupspace-dev/icons@0.1.4(react@19.2.3)':
     dependencies:
       react: 19.2.3
 
-  '@metaupspace/ui@0.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@metaupspace-dev/ui@0.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@metaupspace/design-tokens': 0.1.1(react@19.2.3)
-      '@metaupspace/icons': 0.1.4(react@19.2.3)
+      '@metaupspace-dev/design-tokens': 0.1.1(react@19.2.3)
+      '@metaupspace-dev/icons': 0.1.4(react@19.2.3)
       '@radix-ui/react-dropdown-menu': 2.1.25(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-select': 2.3.8(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-slider': 1.5.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)

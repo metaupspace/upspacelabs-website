@@ -4,9 +4,9 @@
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node init && next dev",
+    "build": "node init && next build",
+    "start": "node init && next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
@@ -19,9 +19,9 @@
     "ds:pack": "bash scripts/pack-design-system.sh"
   },
   "dependencies": {
-    "@metaupspace/design-tokens": "0.1.1",
-    "@metaupspace/icons": "0.1.4",
-    "@metaupspace/ui": "0.3.0",
+    "@metaupspace-dev/design-tokens": "0.1.1",
+    "@metaupspace-dev/icons": "0.1.4",
+    "@metaupspace-dev/ui": "0.3.0",
     "@tanstack/react-query": "^5.104.1",
     "clsx": "^2.1.1",
     "motion": "^12.40.0",

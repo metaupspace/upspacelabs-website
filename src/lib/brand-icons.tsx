@@ -5,7 +5,7 @@ import {
   Linkedin,
   Twitter,
   Youtube,
-} from '@metaupspace/icons';
+} from '@metaupspace-dev/icons';
 import type { SocialPlatform } from '@/lib/types';
 
 type IconComponent = ComponentType<{

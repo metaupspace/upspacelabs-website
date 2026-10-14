@@ -26,7 +26,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Local env files
-.env
 .env*.local
 .env.development.local
 .env.test.local
@@ -41,7 +40,6 @@ cms/.env
 next-env.d.ts
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
